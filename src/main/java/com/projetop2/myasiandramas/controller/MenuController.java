@@ -1,4 +1,4 @@
-package com.projetop2.myasiandramas;
+package com.projetop2.myasiandramas.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
