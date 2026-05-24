@@ -2,6 +2,8 @@
 <head>
   <meta charset="UTF-8"/>
   <title>MyAsianDramas</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+  <link rel="stylesheet" th:href="@{css/base.css}"/>
   <link rel="stylesheet" th:href="@{css/landing.css}"/>
 </head>
 <body>
@@ -21,26 +23,33 @@
 
   <!-- Barra de navegação / Menu -->
   <nav class="navbar">
-    <span class="active">Início</span>
+    <a class="active" th:href="@{/}">Início</a>
     <span><abbr title="Dramas Coreanos">K-Dramas</abbr></span>
     <span><abbr title="Dramas Chineses">C-Dramas</abbr></span>
     <span><abbr title="Dramas Japoneses">J-Dramas</abbr></span>
     <span><abbr title="Dramas Tailandeses">Th-Dramas</abbr></span>
     <span><abbr title="Dramas Taiwaneses">Tw-Dramas</abbr></span>
-    <span>Em Andamento</span>
-    <span>Minhas Listas</span>
+    <div class="navbar-dropdown">
+    <span>Listas</span>
+      <div class="dropdown-menu">
+        <a th:href="@{/minhas-listas}">Ver Minhas Listas</a>
+        <a th:href="@{/criar-lista}">Criar Nova Lista</a>
+      </div>
+    </div>
     <div class="navbar-busca">
       <input type="text" placeholder="Buscar dorama..."/>
-      <span>🔍</span>
+      <div class = "navbar-icone">
+          <i class="fa-solid fa-magnifying-glass"></i>
+      </div>
     </div>
   </nav>
 
   <!-- Conteúdo Principal -->
   <main>
 
-    <!-- Episódios Recentes -->
+    <!-- Doramas Em Andamento -->
     <div class="section-header">
-      <h2>Episódios Lançados Recentemente</h2>
+      <h2>Doramas Em Andamento</h2>
       <div class="section-line"></div>
       <a class="ver-mais">Ver mais</a>
     </div>
@@ -52,7 +61,6 @@
         <div class="doramas-info">
           <img class="doramas-flag" src="https://flagcdn.com/24x18/tw.png" alt="Taiwan"/>
           <span class="doramas-titulo">The Way Back to You</span>
-          <span class="doramas-ep">Ep. 6</span>
         </div>
       </div>
       <div class="grid-item">
@@ -60,7 +68,6 @@
         <div class="doramas-info">
           <img class="doramas-flag" src="https://flagcdn.com/24x18/th.png" alt="Tailândia"/>
           <span class="doramas-titulo">When Oranges Fall</span>
-          <span class="doramas-ep">Ep. 1</span>
         </div>
       </div>
       <div class="grid-item">
@@ -68,7 +75,6 @@
         <div class="doramas-info">
           <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
           <span class="doramas-titulo">O Amor Não Está Esgotado</span>
-          <span class="doramas-ep">Ep. 7</span>
         </div>
       </div>
       <div class="grid-item">
@@ -76,7 +82,6 @@
         <div class="doramas-info">
           <img class="doramas-flag" src="https://flagcdn.com/24x18/jp.png" alt="Japão"/>
           <span class="doramas-titulo">Olha Pra Mim, Mukai-kun </span>
-          <span class="doramas-ep">Ep. 5</span>
         </div>
       </div>
       <div class="grid-item">
@@ -84,7 +89,6 @@
         <div class="doramas-info">
           <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
           <span class="doramas-titulo">O Beijo da Sereia</span>
-          <span class="doramas-ep">Ep. 12</span>
         </div>
       </div>
       <div class="grid-item">
@@ -92,7 +96,6 @@
         <div class="doramas-info">
           <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
           <span class="doramas-titulo">Brilhe Sobre Mim</span>
-          <span class="doramas-ep">Ep. 20</span>
         </div>
       </div>
       <div class="grid-item">
@@ -100,7 +103,6 @@
         <div class="doramas-info">
           <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
           <span class="doramas-titulo">Behind Your Touch</span>
-          <span class="doramas-ep">Ep. 10</span>
         </div>
       </div>
       <div class="grid-item">
@@ -108,7 +110,6 @@
         <div class="doramas-info">
           <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
           <span class="doramas-titulo">Amor O2O</span>
-          <span class="doramas-ep">Ep. 25</span>
         </div>
       </div>
       <div class="grid-item">
@@ -116,7 +117,6 @@
         <div class="doramas-info">
           <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
           <span class="doramas-titulo">Advogado Fantasma</span>
-          <span class="doramas-ep">Ep. 9</span>
         </div>
       </div>
       <div class="grid-item">
@@ -124,7 +124,6 @@
         <div class="doramas-info">
           <img class="doramas-flag" src="https://flagcdn.com/24x18/jp.png" alt="Japão"/>
           <span class="doramas-titulo">The Flowers of Evil</span>
-          <span class="doramas-ep">Ep. 6</span>
         </div>
       </div>
       <div class="grid-item">
@@ -132,7 +131,6 @@
         <div class="doramas-info">
           <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
           <span class="doramas-titulo">Cabbage Your Life</span>
-          <span class="doramas-ep">Ep. 8</span>
         </div>
       </div>
       <div class="grid-item">
@@ -140,7 +138,6 @@
         <div class="doramas-info">
           <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
           <span class="doramas-titulo">Zhan Zhao Adventures</span>
-          <span class="doramas-ep">Ep. 6</span>
         </div>
       </div>
       <div class="grid-item">
@@ -148,7 +145,6 @@
         <div class="doramas-info">
           <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
           <span class="doramas-titulo">Our Happy Days</span>
-          <span class="doramas-ep">Ep. 34</span>
         </div>
       </div>
       <div class="grid-item">
@@ -156,69 +152,93 @@
         <div class="doramas-info">
           <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
           <span class="doramas-titulo">Namorado Por Assinatura</span>
-          <span class="doramas-ep">Ep. 11</span>
         </div>
       </div>
     </div>
 
-    <!-- Próximos Episódios -->
+    <!-- Doramas por gênero -->
     <div class="section-header">
-      <h2>Próximos Episódios</h2>
+      <h2>Doramas por Gênero</h2>
       <div class="section-line"></div>
       <a class="ver-mais">Ver mais</a>
     </div>
 
-    <div class="lista-episodios">
+    <div class="op-grid">
+      <span class="op-btn">Ações e Aventura</span>
+      <span class="op-btn">Comédia</span>
+      <span class="op-btn">Sci-fi e Fantasia</span>
+      <span class="op-btn">Drama</span>
+      <span class="op-btn active">Mistério</span> <!--Active apenas para visualização-->
+      <span class="op-btn">Crime</span>
+      <span class="op-btn">Família</span>
+      <span class="op-btn">Soap</span>
+    </div>
+
+    <div class="lista-porgeneros">
 
     <div class="lista-item">
       <img class="doramas-flag" src="https://flagcdn.com/24x18/jp.png" alt="Japão"/>
       <span class="lista-titulo">Shitsuren Karuta</span>
-      <span class="lista-ep">Ep. 7</span>
     </div>
     <div class="lista-item">
       <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
       <span class="lista-titulo">Magic Move</span>
-      <span class="lista-ep">Ep. 4</span>
     </div>
     <div class="lista-item">
       <img class="doramas-flag" src="https://flagcdn.com/24x18/jp.png" alt="Japão"/>
       <span class="lista-titulo">Azure Spring</span>
-      <span class="lista-ep">Ep. 2</span>
     </div>
     <div class="lista-item">
       <img class="doramas-flag" src="https://flagcdn.com/24x18/th.png" alt="Tailândia"/>
       <span class="lista-titulo">Wu the Series</span>
-      <span class="lista-ep">Ep. 2</span>
     </div>
     <div class="lista-item">
       <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
       <span class="lista-titulo">The Scarecrow</span>
-      <span class="lista-ep">Ep. 8</span>
     </div>
     <div class="lista-item">
       <img class="doramas-flag" src="https://flagcdn.com/24x18/jp.png" alt="Japão"/>
       <span class="lista-titulo">Reborn</span>
-      <span class="lista-ep">Ep. 5</span>
     </div>
     <div class="lista-item">
       <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
       <span class="lista-titulo">The Legend of Kitchen Soldier</span>
-      <span class="lista-ep">Ep. 2</span>
     </div>
     <div class="lista-item">
       <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
       <span class="lista-titulo">Born with Luck</span>
-      <span class="lista-ep">Ep. 21</span>
     </div>
     <div class="lista-item">
       <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
       <span class="lista-titulo">Wanna One Go: Back to Base</span>
-      <span class="lista-ep">Ep. 5</span>
     </div>
     <div class="lista-item">
       <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
       <span class="lista-titulo">The Lead</span>
-      <span class="lista-ep">Ep. 7</span>
+    </div>
+    <div class="lista-item">
+      <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
+      <span class="lista-titulo">The Lead</span>
+    </div>
+    <div class="lista-item">
+      <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
+      <span class="lista-titulo">The Lead</span>
+    </div>
+    <div class="lista-item">
+      <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
+      <span class="lista-titulo">The Lead</span>
+    </div>
+    <div class="lista-item">
+      <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
+      <span class="lista-titulo">The Lead</span>
+    </div>
+    <div class="lista-item">
+      <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
+      <span class="lista-titulo">The Lead</span>
+    </div>
+    <div class="lista-item">
+      <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
+      <span class="lista-titulo">The Lead</span>
     </div>
   </div>
 
@@ -228,19 +248,19 @@
       <div class="section-line"></div>
     </div>
 
-    <div class="meses-grid">
-      <span class="mes-btn">Jan</span>
-      <span class="mes-btn">Fev</span>
-      <span class="mes-btn">Mar</span>
-      <span class="mes-btn">Abr</span>
-      <span class="mes-btn active">Mai</span> <!--Active apenas para visualização-->
-      <span class="mes-btn">Jun</span>
-      <span class="mes-btn">Jul</span>
-      <span class="mes-btn">Ago</span>
-      <span class="mes-btn">Set</span>
-      <span class="mes-btn">Out</span>
-      <span class="mes-btn">Nov</span>
-      <span class="mes-btn">Dez</span>
+    <div class="op-grid">
+      <span class="op-btn">Jan</span>
+      <span class="op-btn">Fev</span>
+      <span class="op-btn">Mar</span>
+      <span class="op-btn">Abr</span>
+      <span class="op-btn active">Mai</span> <!--Active apenas para visualização-->
+      <span class="op-btn">Jun</span>
+      <span class="op-btn">Jul</span>
+      <span class="op-btn">Ago</span>
+      <span class="op-btn">Set</span>
+      <span class="op-btn">Out</span>
+      <span class="op-btn">Nov</span>
+      <span class="op-btn">Dez</span>
     </div>
     <div class="lista-lancamentos">
     <div class="lista-data-grupo">

@@ -6,7 +6,7 @@ public class Elenco {
     private String personagem;
 
     public Elenco(){
-
+        
     }
 
     //Para insert e select

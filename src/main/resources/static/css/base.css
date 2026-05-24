@@ -1,0 +1,250 @@
+:root {
+  --bg:          #0a0a0a;
+  --bg-surface:  #111111; 
+  --bg-card:     #181818;
+  --border:      #2a2a2a;
+
+  --gold:        #c9a96e;
+  --gold-dim:    #7a6040;
+
+  --text:        #f0ece4;
+  --text-muted:  #9a9590;
+  --text-sub:    #b0a898;/*#4a4540;*/
+  --text-titulo: #2b1d0e;
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+  }
+
+body {
+  background-color: #f5f0e8;
+  font-family: 'DM Sans', sans-serif;
+  color: var(--text);
+}
+
+/* TOPO */
+.topbar {
+  background-color: var(--bg-surface);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem 2.5rem; /*Top/bottom = 2rem | Left/right = 2.5rem*/
+  height: 64px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  border-bottom: 2px solid #1e1e1e;
+}
+
+.brand { /*Agrupa brand-icon e brand-name, definindo alinhamento e espaçamento entre eles*/
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-icon {
+  height: 50px;
+  width: auto;
+  line-height: 1;
+}
+
+.brand-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 30px;
+  font-weight: 600;
+  color: var(--gold);
+  letter-spacing: 0.5px;
+}
+
+.topbar-subtitulo { /*Apenas estiliza a frase no centro*/
+  font-size: 13px;
+  color: var(--text-sub);
+  font-weight: 500;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+
+.topbar-right { /*Mesma função que brand. Agrupa todos os elementos do lado direito do topo, como login/cadastro*/
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.topbar-right span {
+  color: var(--text-muted);
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0.3px;
+  transition: color 0.2s;
+}
+
+.topbar-right span:hover:not(.divisor) { /*Quando passa mouse por login e | só considera as propriedades em Login*/
+    color: var(--text);
+    cursor: pointer;
+} 
+
+.btn-cadastro { /*Com important para sobrescrever o estilo de span*/
+  color: var(--gold) !important;
+  border: 1px solid var(--gold-dim);
+  padding: 6px 18px;
+  border-radius: 2px;
+  font-size: 13px !important;
+  font-weight: 500 !important;
+  letter-spacing: 0.8px;
+  transition: all 0.2s !important;
+}
+
+.btn-cadastro:hover {
+  background: var(--gold)!important;
+  color: var(--bg)!important;
+  border-color: var(--gold)!important;
+}
+
+/* BARRA DE NAVEGAÇÃO - MENU */
+.navbar {
+  background-color: var(--bg-surface);
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  padding: 0 40px;
+  height: 48px;
+  overflow: visible;
+  gap: 0;
+}
+
+.navbar::-webkit-scrollbar { display: none; }
+
+.navbar a,
+.navbar span {/*Estilo apenas para span direto de navbar*/
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  padding: 0 16px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  border-bottom: 2px solid transparent;
+  transition: color 0.2s, border-color 0.2s;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.navbar abbr {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.navbar a:hover,
+.navbar span:hover,
+.navbar a.active,
+.navbar span.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+.navbar-dropdown {
+  position: relative;
+  height: 48px;
+  display: flex;
+  align-items: center;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 48px;
+  left: 0;
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-top: none;
+  min-width: 180px;
+  z-index: 200;
+  flex-direction: column;
+}
+
+.dropdown-menu a {
+  text-decoration: none;
+  color: var(--text-muted);
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  padding: 12px 16px;
+  display: block;
+  transition: color 0.2s, background 0.2s;
+  white-space: nowrap;
+  border-bottom: none;
+  height: auto;
+}
+
+.dropdown-menu a:hover {
+  color: var(--gold);
+  background: var(--bg-card);
+}
+
+.navbar-dropdown:hover .dropdown-menu {
+  display: flex;
+}
+
+/* BUSCA */
+.navbar-busca {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 2px;
+  padding: 5px 12px;
+  gap: 8px;
+  transition: border-color 0.2s;
+}
+
+.navbar-busca:focus-within {
+  border-color: var(--gold-dim);
+}
+
+.navbar-busca input {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: var(--text-muted);
+  font-size: 13px;
+  font-family: 'DM Sans', sans-serif;
+  width: 180px;
+}
+
+.navbar-icone {
+  cursor: pointer;
+  transition: color 0.2s; 
+  color: var(--gold);
+}
+
+.navbar-busca span:hover {
+  color: var(--gold) 
+}
+
+/* MAIN  */
+main {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 40px;
+}
+
+/*  FOOTER */
+footer {
+  background: var(--bg-surface);
+  border-top: 1px solid var(--border);
+  color: var(--text-sub);
+  text-align: center;
+  padding: 24px;
+  font-size: 12px;
+  letter-spacing: 0.5px;
+  margin-top: 16px;
+}
+
+footer span { color: var(--gold); }
