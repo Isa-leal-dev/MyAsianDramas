@@ -218,12 +218,18 @@ body {
   width: 180px;
 }
 
-.navbar-icone {
+.navbar-busca button {
+  background: none;
+  border: none;
+  padding: 0;
   cursor: pointer;
-  transition: color 0.2s; 
   color: var(--gold);
+  transition: color 0.2s;
 }
 
+.navbar-busca button:hover {
+  color: var(--gold);
+}
 .navbar-busca span:hover {
   color: var(--gold) 
 }

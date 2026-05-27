@@ -1,5 +1,8 @@
 package com.projetop2.myasiandramas.model.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.stereotype.Repository;
 
 import com.projetop2.myasiandramas.model.Genero;
@@ -15,6 +18,8 @@ public class GeneroDAO extends BaseDAO{
         return buscarIdPorIdTmdb("id_genero", "tb_generos","id_tmdb_genero", idTmdbGenero);//De classe abstrata
     }
 
+    //CREATE:
+
     public void inserirGenero(Genero g){
         String sql = "INSERT INTO tb_generos(id_tmdb_genero, descricao) VALUES(?,?)";
         Object[] obj = new Object[2];
@@ -22,6 +27,14 @@ public class GeneroDAO extends BaseDAO{
         obj[1] = (String) g.getDescricao();
         
         jdbc.update(sql,obj);
+    }
+
+    //READ:
+
+    public List<Genero> buscarTodosGeneros(){
+        String sql = "SELECT * FROM tb_generos";
+        List<Map<String,Object>> listaRegistros = jdbc.queryForList(sql);
+        return Genero.converterLista(listaRegistros);
     }
 
 }

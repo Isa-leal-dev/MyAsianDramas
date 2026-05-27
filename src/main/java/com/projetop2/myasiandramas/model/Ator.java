@@ -1,6 +1,9 @@
 package com.projetop2.myasiandramas.model;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 public class Ator {
     private int idAtor, idTmdbAtor;
@@ -87,6 +90,30 @@ public class Ator {
 
     public void setFotoPerfil(String fotoPerfil) {
         this.fotoPerfil = fotoPerfil;
+    }
+
+    public static Ator converterRegistros(Map<String,Object> registros){
+
+        int idAtor = (int) registros.get("id_ator");
+        int idTmdbAtor = (int) registros.get("id_tmdb_ator");
+        String nomeAtor = (String) registros.get("nome_ator");
+        String nomeOriginal = (String) registros.get("nome_original");
+        String fotoPerfil = (String) registros.get("foto_perfil");
+        Sexo sexo = Sexo.valueOf((String) registros.get("sexo"));
+        LocalDate dataNascimento = registros.get("data_nascimento") != null ? //data é retornada como java.sqlDate
+                                ((java.sql.Date) registros.get("data_nascimento")).toLocalDate() //Precisa converter para LocalDate
+                                : null;//verificação de null para evitar NullPointerException
+
+        return new Ator(idAtor, idTmdbAtor, nomeAtor, nomeOriginal, fotoPerfil, sexo, dataNascimento);
+    }
+
+    public static List<Ator> converterLista(List<Map<String,Object>> listaRegistros){
+        ArrayList<Ator> auxiliar = new ArrayList<>();
+
+        for(Map<String,Object> registro : listaRegistros){
+            auxiliar.add(Ator.converterRegistros((Map) registro));
+        }
+        return auxiliar;
     }
 
 }

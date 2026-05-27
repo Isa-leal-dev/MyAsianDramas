@@ -24,11 +24,21 @@
   <!-- Barra de navegação / Menu -->
   <nav class="navbar">
     <a class="active" th:href="@{/}">Início</a>
-    <span><abbr title="Dramas Coreanos">K-Dramas</abbr></span>
-    <span><abbr title="Dramas Chineses">C-Dramas</abbr></span>
-    <span><abbr title="Dramas Japoneses">J-Dramas</abbr></span>
-    <span><abbr title="Dramas Tailandeses">Th-Dramas</abbr></span>
-    <span><abbr title="Dramas Taiwaneses">Tw-Dramas</abbr></span>
+    <a th:href="@{/doramas/KR}">
+      <abbr title="Dramas Coreanos">K-Dramas</abbr>
+    </a>
+    <a th:href="@{/doramas/CN}">
+      <abbr title="Dramas Chineses">C-Dramas</abbr>
+    </a>
+    <a th:href="@{/doramas/JP}">
+      <abbr title="Dramas Japoneses">J-Dramas</abbr>
+    </a>
+    <a th:href="@{/doramas/TH}">
+      <abbr title="Dramas Tailandeses">Th-Dramas</abbr>
+    </a>
+    <a th:href="@{/doramas/TW}">
+      <abbr title="Dramas Taiwaneses">Tw-Dramas</abbr>
+    </a>
     <div class="navbar-dropdown">
     <span>Listas</span>
       <div class="dropdown-menu">
@@ -37,10 +47,12 @@
       </div>
     </div>
     <div class="navbar-busca">
-      <input type="text" placeholder="Buscar dorama..."/>
-      <div class = "navbar-icone">
-          <i class="fa-solid fa-magnifying-glass"></i>
-      </div>
+      <form method="get" th:action="@{/resultados-busca}">
+        <input type="text" name="titulo" placeholder="Buscar dorama..."/>
+          <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+      </form>
     </div>
   </nav>
 
@@ -51,109 +63,21 @@
     <div class="section-header">
       <h2>Doramas Em Andamento</h2>
       <div class="section-line"></div>
-      <a class="ver-mais">Ver mais</a>
+      <a class="ver-mais" th:href="@{/lista/dorama/em-andamento}">Ver mais</a>
     </div>
 
     <div class="doramas-grid">
 
-      <div class="grid-item">
-        <img class="doramas-poster" th:src="@{img/thewaybacktoyou.jpg}" alt=""/>
+      <a th:href="@{/dorama/{id}(id=${d.idDorama})}" class="grid-item" th:each="d : ${doramas}">
+        <img class="doramas-poster" th:src="${d.poster}" alt=""/>
         <div class="doramas-info">
-          <img class="doramas-flag" src="https://flagcdn.com/24x18/tw.png" alt="Taiwan"/>
-          <span class="doramas-titulo">The Way Back to You</span>
+          <img class="doramas-flag" 
+                th:src="'https://flagcdn.com/24x18/' + ${d.pais.name().toLowerCase()} + '.png'" 
+                th:alt="${d.pais.descricao}"/>
+          <!--<img class="doramas-flag" src="https://flagcdn.com/24x18/tw.png" alt="Taiwan"/>-->
+          <span class="doramas-titulo" th:text="${d.tituloPortugues}"></span>
         </div>
-      </div>
-      <div class="grid-item">
-        <img class="doramas-poster" th:src="@{img/whenorangesfall.jpg}" alt=""/>
-        <div class="doramas-info">
-          <img class="doramas-flag" src="https://flagcdn.com/24x18/th.png" alt="Tailândia"/>
-          <span class="doramas-titulo">When Oranges Fall</span>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img class="doramas-poster" th:src="@{img/soldoutonyou.jpg}" alt=""/>
-        <div class="doramas-info">
-          <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-          <span class="doramas-titulo">O Amor Não Está Esgotado</span>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img class="doramas-poster" th:src="@{img/OlhaPraMimMukaikun.jpg}" alt=""/>
-        <div class="doramas-info">
-          <img class="doramas-flag" src="https://flagcdn.com/24x18/jp.png" alt="Japão"/>
-          <span class="doramas-titulo">Olha Pra Mim, Mukai-kun </span>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img class="doramas-poster" th:src="@{img/OBeijodaSereia.jpg}" alt=""/>
-        <div class="doramas-info">
-          <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-          <span class="doramas-titulo">O Beijo da Sereia</span>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img class="doramas-poster" th:src="@{img/BrilheSobreMim.jpg}" alt=""/>
-        <div class="doramas-info">
-          <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
-          <span class="doramas-titulo">Brilhe Sobre Mim</span>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img class="doramas-poster" th:src="@{img/BehindYourTouch.jpg}" alt=""/>
-        <div class="doramas-info">
-          <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-          <span class="doramas-titulo">Behind Your Touch</span>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img class="doramas-poster" th:src="@{img/AmorO2O.jpg}" alt=""/>
-        <div class="doramas-info">
-          <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
-          <span class="doramas-titulo">Amor O2O</span>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img class="doramas-poster" th:src="@{img/AdvogadoFantasma.jpg}" alt=""/>
-        <div class="doramas-info">
-          <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-          <span class="doramas-titulo">Advogado Fantasma</span>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img class="doramas-poster" th:src="@{img/TheFlowersofEvil.jpg}" alt=""/>
-        <div class="doramas-info">
-          <img class="doramas-flag" src="https://flagcdn.com/24x18/jp.png" alt="Japão"/>
-          <span class="doramas-titulo">The Flowers of Evil</span>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img class="doramas-poster" th:src="@{img/CabbageYourLife.jpg}" alt=""/>
-        <div class="doramas-info">
-          <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-          <span class="doramas-titulo">Cabbage Your Life</span>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img class="doramas-poster" th:src="@{img/ZhanZhaoAdventures.jpg}" alt=""/>
-        <div class="doramas-info">
-          <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
-          <span class="doramas-titulo">Zhan Zhao Adventures</span>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img class="doramas-poster" th:src="@{img/OurHappyDays.jpg}" alt=""/>
-        <div class="doramas-info">
-          <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-          <span class="doramas-titulo">Our Happy Days</span>
-        </div>
-      </div>
-      <div class="grid-item">
-        <img class="doramas-poster" th:src="@{img/NamoradoPorAssinatura.jpg}" alt=""/>
-        <div class="doramas-info">
-          <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-          <span class="doramas-titulo">Namorado Por Assinatura</span>
-        </div>
-      </div>
+      </a>
     </div>
 
     <!-- Doramas por gênero -->
@@ -164,14 +88,7 @@
     </div>
 
     <div class="op-grid">
-      <span class="op-btn">Ações e Aventura</span>
-      <span class="op-btn">Comédia</span>
-      <span class="op-btn">Sci-fi e Fantasia</span>
-      <span class="op-btn">Drama</span>
-      <span class="op-btn active">Mistério</span> <!--Active apenas para visualização-->
-      <span class="op-btn">Crime</span>
-      <span class="op-btn">Família</span>
-      <span class="op-btn">Soap</span>
+      <span th:each="g : ${generos}" class="op-btn" th:text="${g.descricao}"></span>
     </div>
 
     <div class="lista-porgeneros">

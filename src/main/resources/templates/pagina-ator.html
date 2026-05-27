@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Página do Ator</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <span>Nome: </span>
+    	<span th:text="${ator.nomeAtor}"></span><br>
+    <span>Nome nativo: </span>
+        <span th:text="${ator.nomeOriginal}"></span><br>
+    <span>Sexo: </span>
+        <span th:text="${ator.sexo}"></span><br>
+    <span>Data de nascimento: </span>
+        <span th:text="${ator.dataNascimento}"></span><br>
+    <span>Foto Perfil: </span>
+        <img th:src="${ator.fotoPerfil}" alt=""><br>
+    <a th:href="@{'/'}">Inicio</a>
+     <table class="table table-striped table-primary">
+    	<thead class="ttop">
+        	<tr class="table-info">
+            	<td><b>Titulo Português</b></td>
+            	<td><b>Titulo Inglês</b> </td>
+            	<td><b>Titulo Original</b> </td>
+				<td></td>
+        	</tr>
+    	</thead>
+    	<tbody>
+        	<tr th:each="dorama : ${doramas}">
+            	<td th:text="${dorama.tituloPortugues}"></td>
+            	<td th:text="${dorama.tituloIngles}"></td>
+            	<td th:text="${dorama.tituloNativo}"></td>
+				<td><a th:href="@{/dorama/{id}(id=${dorama.idDorama})}"> Link</a></td>
+       		</tr>
+     	</tbody>
+    </table>
+</body>
+</html>

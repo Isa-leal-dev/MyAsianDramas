@@ -1,5 +1,9 @@
 package com.projetop2.myasiandramas.model;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 public class Genero {
     private int idGenero, idTmdbGenero;
     private String descricao;
@@ -39,6 +43,23 @@ public class Genero {
 
     public void setIdTmdbGenero(int idTmdbGenero) {
         this.idTmdbGenero = idTmdbGenero;
+    }
+
+    public static Genero converterRegistros(Map<String,Object> registros){
+        int idGenero = (int) registros.get("id_genero");
+        int idTmdbGenero = (int) registros.get("id_tmdb_genero");
+        String descricao = (String) registros.get("descricao");
+
+        return new Genero(idGenero, idTmdbGenero, descricao);
+    }
+
+    public static List<Genero> converterLista(List<Map<String,Object>> listaRegistros){
+        ArrayList<Genero> auxiliar = new ArrayList<>();
+
+        for(Map<String,Object> registro : listaRegistros){
+            auxiliar.add(Genero.converterRegistros((Map) registro));
+        }
+        return auxiliar;
     }
 
 

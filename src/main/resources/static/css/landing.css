@@ -40,6 +40,11 @@
   transition: filter 0.2s, transform 0.2s;
 }
 
+a.grid-item {
+    text-decoration: none;
+    color: inherit;
+}
+
 .grid-item:hover {
   transform: translateY(-2px);
   filter: brightness(1.1); 

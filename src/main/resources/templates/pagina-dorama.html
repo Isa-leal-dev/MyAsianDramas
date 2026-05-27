@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Página do Dorama</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <span>Título Português: </span>
+    	<span th:text="${dorama.tituloPortugues}"></span><br>
+    <span>Título Inglês: </span>
+        <span th:text="${dorama.tituloIngles}"></span><br>
+    <span>Título Nativo: </span>
+        <span th:text="${dorama.tituloNativo}"></span><br>
+    <span>Total de episódios: </span>
+        <span th:text="${dorama.numeroEpisodios}"></span><br>
+    <span>País de origem: </span>
+        <span th:text="${dorama.pais.descricao}"></span><br>
+    <span>Poster: </span>
+        <img th:src="${dorama.poster}" alt=""><br>
+    <a th:href="@{'/'}">Inicio</a>
+    <table class="table table-striped table-primary">
+    	<thead class="ttop">
+        	<tr class="table-info">
+            	<td><b>Nome</b></td>
+            	<td><b>Nome nativo</b> </td>
+            	<td><b>Data de nascimento</b> </td>
+        	</tr>
+    	</thead>
+    	<tbody>
+        	<tr th:each="ator : ${elenco}">
+            	<td> <a th:href="@{/ator/{id}(id=${ator.idAtor})}" th:text="${ator.nomeAtor}"></a></td>
+            	<td th:text="${ator.nomeOriginal}"></td>
+            	<td th:text="${ator.dataNascimento}"></td>
+       		</tr>
+     	</tbody>
+    </table>
+</body>
+</html>
