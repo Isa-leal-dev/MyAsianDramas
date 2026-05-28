@@ -1,0 +1,20 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Adicionar Dorama em Lista</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+ <form th:action="@{/listas/adicionar-dorama}" method="post">
+        <input type="hidden" name="idDorama" th:value="${dorama.idDorama}"/>
+        
+        <select name="idLista">
+            <option th:each="lista : ${minhasListas}" 
+                    th:value="${lista.idLista}" 
+                    th:text="${lista.nomeLista}"></option>
+        </select>
+        
+        <button type="submit">Adicionar à Lista</button>
+    </form>
+</body>
+</html>

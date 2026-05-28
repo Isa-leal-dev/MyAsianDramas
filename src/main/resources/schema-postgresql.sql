@@ -68,7 +68,6 @@ CREATE TABLE IF NOT EXISTS tb_doramas_generos (
 CREATE TABLE IF NOT EXISTS tb_lista_doramas(
   id_lista INTEGER,
   id_dorama INTEGER,
-  status_visualizacao VARCHAR(20), --Enum
   PRIMARY KEY (id_lista, id_dorama),
   FOREIGN KEY (id_dorama) REFERENCES tb_doramas(id_dorama),
   FOREIGN KEY (id_lista) REFERENCES tb_listas(id_lista)

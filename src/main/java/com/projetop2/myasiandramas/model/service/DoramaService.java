@@ -64,4 +64,8 @@ public class DoramaService {
         return ddao.buscarDoramasPorGenero(idGenero);
     }
 
+    public List<Dorama> buscarDoramasPorLista(int idLista){
+        return ddao.buscarDoramasPorLista(idLista);
+    }
+
 }

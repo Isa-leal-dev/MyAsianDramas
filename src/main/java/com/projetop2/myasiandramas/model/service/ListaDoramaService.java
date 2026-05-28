@@ -12,8 +12,8 @@ public class ListaDoramaService {
     @Autowired
     ListaDoramaDAO lddao;
 
-    public void inserirListaDorama(ListaDorama ld){
-        lddao.inserirListaDorama(ld);
+    public void inserirDoramaEmLista(ListaDorama ld){
+        lddao.inserirDoramaEmLista(ld);
     } 
 
 }

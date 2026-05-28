@@ -100,5 +100,12 @@ public class DoramaDAO extends BaseDAO{
         return Dorama.converterLista(listaRegistros);
     }
 
+    public List<Dorama> buscarDoramasPorLista(int idLista){
+        String sql = "SELECT d.* FROM tb_doramas d " +
+                    "JOIN tb_lista_doramas ld ON d.id_dorama = ld.id_dorama " +
+                    "WHERE ld.id_lista = ?";
+        List<Map<String,Object>> listaRegistros = jdbc.queryForList(sql, idLista);
+        return Dorama.converterLista(listaRegistros);
+    }
    
 }

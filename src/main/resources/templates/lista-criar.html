@@ -1,18 +1,19 @@
 <!DOCTYPE HTML>
-<!-- Página ainda não totalmente implementada-->
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Confirmação</title>
+    <title>Crie sua Lista</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" th:href="@{css/base.css}"/>
-    <link rel="stylesheet" th:href="@{css/minhas-listas.css}"/>
+    <link rel="stylesheet" th:href="@{css/criar-lista.css}"/>
+
 </head>
 <body>
-        <!-- Topo -->
+    <!-- Topo -->
   <header class="topbar">
     <span class="brand">
         <img class="brand-icon" th:src="@{img/korean-heart.png}" alt=""/>
-    <span class="brand-name">MyAsianDramas</span>
+      <span class="brand-name">MyAsianDramas</span>
     </span>
     <p class="topbar-subtitulo">Organize seus doramas favoritos do seu jeito</p>
     <div class="topbar-right">
@@ -31,8 +32,8 @@
     <div class="navbar-dropdown">
       <span class="active">Listas</span>
       <div class="dropdown-menu">
-        <a th:href="@{/minhas-listas}">Ver Minhas Listas</a>
-        <a th:href="@{/criar-lista}">Criar Nova Lista</a>
+        <a th:href="@{/listas/minhas}">Ver Minhas Listas</a>
+        <a th:href="@{/listas/criar}">Criar Nova Lista</a>
       </div>
     </div>
     <div class="navbar-busca">
@@ -42,11 +43,48 @@
       </div>
     </div>
   </nav>
+
   <main>
-    <h1>Lista criada com sucesso!</h1>
+    <div class="form-container">
+
+      <div class="form-header">
+        <!--<span class="form-icone"></span>-->
+        <h1 class="form-titulo">🌸 Criar Nova Lista</h1>
+      </div>
+
+      <form action="#" th:action="@{/listas/criar}" method="post" th:object="${criarLista}" class="form-card">
+
+        <div class="form-grupo">
+          <label class="form-label" for="nomeLista">Nome</label>
+          <input
+            class="form-input"
+            type="text"
+            id="nomeLista"
+            th:field="*{nomeLista}"
+            placeholder="Ex: Para assistir, Favoritos..."/>
+        </div>
+
+        <div class="form-grupo">
+          <label class="form-label" for="descricao">Descrição</label>
+          <textarea
+            class="form-input form-textarea"
+            id="descricao"
+            th:field="*{descricao}"
+            placeholder="Descreva sua lista..."></textarea>
+        </div>
+
+        <div class="form-acoes">
+          <a class="btn-cancelar" th:href="@{/listas/minhas}">Cancelar</a>
+          <input class="btn-criar" type="submit" value="Criar Lista"/>
+        </div>
+
+      </form>
+    </div>
   </main>
+
   <footer>
     <p>MyAsianDramas &copy; 2026 &mdash; Feito com <span>♥</span> para fãs de doramas</p>
   </footer>
+
 </body>
 </html>

@@ -2,13 +2,16 @@ package com.projetop2.myasiandramas.model;
 
 public class ListaDorama {
     private int idLista, idDorama;
-    private StatusVisualizacao status;
+
+    //Form inicial
+    public ListaDorama() {
+
+    }
 
     //Para insert e select
-    public ListaDorama(int idLista, int idDorama, StatusVisualizacao status) {
+    public ListaDorama(int idLista, int idDorama) {
         this.idLista = idLista;
         this.idDorama = idDorama;
-        this.status = status;
     }
 
     public int getIdLista() {
@@ -26,15 +29,5 @@ public class ListaDorama {
     public void setIdDorama(int idDorama) {
         this.idDorama = idDorama;
     }
-
-    public StatusVisualizacao getStatus() {
-        return status;
-    }
-
-    public void setStatus(StatusVisualizacao status) {
-        this.status = status;
-    }
-
-
 
 }

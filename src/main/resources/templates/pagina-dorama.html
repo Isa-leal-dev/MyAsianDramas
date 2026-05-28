@@ -18,6 +18,10 @@
     <span>Poster: </span>
         <img th:src="${dorama.poster}" alt=""><br>
     <a th:href="@{'/'}">Inicio</a>
+
+    <a th:href="@{/listas/adicionar-dorama/{idDorama}(idDorama=${dorama.idDorama})}">Adicionar em uma Lista</a>
+    </form>
+
     <table class="table table-striped table-primary">
     	<thead class="ttop">
         	<tr class="table-info">

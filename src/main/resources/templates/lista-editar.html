@@ -32,8 +32,8 @@
     <div class="navbar-dropdown">
       <span class="active">Listas</span>
       <div class="dropdown-menu">
-        <a th:href="@{/minhas-listas}">Ver Minhas Listas</a>
-        <a th:href="@{/criar-lista}">Criar Nova Lista</a>
+        <a th:href="@{/listas/minhas}">Ver Minhas Listas</a>
+        <a th:href="@{/listas/criar}">Criar Nova Lista</a>
       </div>
     </div>
     <div class="navbar-busca">
@@ -49,10 +49,10 @@
 
       <div class="form-header">
         <!--<span class="form-icone"></span>-->
-        <h1 class="form-titulo">🌸 Criar Nova Lista</h1>
+        <h1 class="form-titulo">🌸 Editar Lista</h1>
       </div>
 
-      <form action="#" th:action="@{/criar-lista}" method="post" th:object="${criarLista}" class="form-card">
+      <form action="#" th:action="@{'/listas/'+${id}+'/atualizar'}" method="post" th:object="${lista}" class="form-card">
 
         <div class="form-grupo">
           <label class="form-label" for="nomeLista">Nome</label>
@@ -60,8 +60,7 @@
             class="form-input"
             type="text"
             id="nomeLista"
-            th:field="*{nomeLista}"
-            placeholder="Ex: Para assistir, Favoritos..."/>
+            th:field="*{nomeLista}"/>
         </div>
 
         <div class="form-grupo">
@@ -69,13 +68,12 @@
           <textarea
             class="form-input form-textarea"
             id="descricao"
-            th:field="*{descricao}"
-            placeholder="Descreva sua lista..."></textarea>
+            th:field="*{descricao}"></textarea>
         </div>
 
         <div class="form-acoes">
-          <a class="btn-cancelar" th:href="@{/minhas-listas}">Cancelar</a>
-          <input class="btn-criar" type="submit" value="Criar Lista"/>
+          <a class="btn-cancelar" th:href="@{/listas/minhas}">Cancelar</a>
+          <input class="btn-criar" type="submit" value="Atualizar Lista"/>
         </div>
 
       </form>
