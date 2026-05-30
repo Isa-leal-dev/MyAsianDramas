@@ -48,11 +48,11 @@ public class DoramaService {
        return ddao.buscarDoramasPorPais(pd); 
     } 
 
-    public List<Dorama> buscarTodosDoramas(){//Sem rota ainda
+    public List<Dorama> buscarTodosDoramas(){
         return ddao.buscarTodosDoramas();
     }
 
-    public List<Dorama> buscarDoramasPorMes(int mes){//Sem rota ainda
+    public List<Dorama> buscarDoramasPorMes(int mes){
         return ddao.buscarDoramasPorMes(mes);
     }
 
@@ -60,12 +60,16 @@ public class DoramaService {
         return ddao.buscarDoramasPorAtor(idAtor);
     }
 
-    public List<Dorama> buscarDoramasPorGenero(int idGenero){//Sem uso ainda
-        return ddao.buscarDoramasPorGenero(idGenero);
+    public List<Dorama> buscarDoramasPorGenero(int idGenero, int limite){
+        return ddao.buscarDoramasPorGenero(idGenero, limite);
     }
 
     public List<Dorama> buscarDoramasPorLista(int idLista){
         return ddao.buscarDoramasPorLista(idLista);
+    }
+
+    public int contarDoramasEmLista(int idLista){
+        return ddao.contarDoramasEmLista(idLista);
     }
 
 }

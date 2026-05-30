@@ -1,0 +1,210 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap');
+
+:root {
+    --bg: #f3efe8;
+    --card: #ffffff;
+    --gold: #c9a96e;
+    --gold-dark: #8b6a3e;
+    --text: #2b1d0e;
+    --border: #d9cfc1;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box;
+}
+
+body {
+    background: var(--bg);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+/* PALAVRAS DECORATIVAS */
+
+.background-words {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.background-words span {
+    position: absolute;
+    font-size: 42px;
+    color: rgba(201, 169, 110, 0.55);
+    font-family: 'DM Sans', sans-serif;/*'Cormorant Garamond', serif;*/
+    user-select: none;
+    letter-spacing: 2px;
+    text-shadow: 0 0 4px rgba(201,169,110,0.20);
+}
+
+.background-words span:nth-child(1) { top: 8%;  left: 8%;}
+.background-words span:nth-child(2) { top: 14%; right: 10%;}
+.background-words span:nth-child(3) { top: 42%; left: 4%;}
+.background-words span:nth-child(4) { top: 35%; right: 20%;}
+.background-words span:nth-child(5) { bottom: 18%; left: 10%;}
+.background-words span:nth-child(6) { bottom: 14%; right: 10%;}
+.background-words span:nth-child(7) { top: 28%; left: 18%;}
+.background-words span:nth-child(8) { bottom: 32%; right: 12%;}
+
+
+/* CONTAINER */
+
+.auth-container {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    z-index: 2;
+}
+
+/* LOGO */
+
+.logo-area {
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+.logo-area img {
+    width: 55px;
+    margin-bottom: 10px;
+}
+
+.logo-area h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 42px;
+    color: var(--text);
+    font-weight: 600;
+}
+
+.logo-area p {
+    margin-top: 6px;
+    color: #7a6040;
+    font-size: 14px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* CARD */
+
+.auth-card {
+    width: 100%;
+    max-width: 420px;
+    background: var(--card);
+    padding: 40px;
+    border-radius: 12px;
+    border: 1px solid rgba(201, 169, 110, 0.25);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+.auth-card h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 34px;
+    color: var(--text);
+    margin-bottom: 28px;
+    text-align: center;
+}
+
+.auth-card p {
+    font-size: 14px;
+    color: rgb(208, 23, 23); 
+    text-align: center;
+    font-weight: 600;  
+}
+
+/* INPUTS */
+
+.input-group {
+    margin-bottom: 22px;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 8px;
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    background: #fff;
+    font-size: 14px;
+    transition: 0.2s;
+}
+
+.input-group input:focus {
+    outline: none;
+    border-color: var(--gold);
+    box-shadow: 0 0 0 3px rgba(201,169,110,0.15);
+}
+
+/* BOTÕES */
+
+.btn-primary {
+    width: 100%;
+    padding: 14px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--gold);
+    color: #fff;
+    border: none;
+}
+
+.btn-primary:hover {
+    background: var(--gold-dark);
+}
+
+.button-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.auth-links {
+    margin-top: 18px;
+    text-align: center;
+}
+
+.auth-links a {
+    color: #7a6040;
+    font-size: 13px;
+    text-decoration: none;
+    transition: 0.2s;
+}
+
+.auth-links a:hover {
+    color: var(--gold-dark);
+}
+
+/* FOOTER */
+
+.auth-footer {
+    margin-top: 24px;
+    text-align: center;
+    font-size: 14px;
+    color: #7a6040;
+}
+
+.auth-footer a {
+    color: var(--gold-dark);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.auth-footer a:hover {
+    text-decoration: underline;
+}

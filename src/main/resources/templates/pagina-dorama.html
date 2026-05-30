@@ -3,8 +3,11 @@
 <head>
     <title>Página do Dorama</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
 </head>
 <body>
+    <div th:insert="~{base :: topo}"></div>
+    <div th:insert="~{base :: menu}"></div>
     <span>Título Português: </span>
     	<span th:text="${dorama.tituloPortugues}"></span><br>
     <span>Título Inglês: </span>
@@ -38,5 +41,6 @@
        		</tr>
      	</tbody>
     </table>
+    <div th:insert="~{base :: rodape}"></div>
 </body>
 </html>

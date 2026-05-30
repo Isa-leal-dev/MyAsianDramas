@@ -3,8 +3,11 @@
 <head>
     <title>Adicionar Dorama em Lista</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
 </head>
 <body>
+  <div th:insert="base :: topo"></div>
+  <div th:insert="base :: menu"></div>
  <form th:action="@{/listas/adicionar-dorama}" method="post">
         <input type="hidden" name="idDorama" th:value="${dorama.idDorama}"/>
         
@@ -16,5 +19,6 @@
         
         <button type="submit">Adicionar à Lista</button>
     </form>
+ <div th:insert="~{base :: rodape}"></div>
 </body>
 </html>

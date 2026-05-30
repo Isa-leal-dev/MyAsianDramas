@@ -97,6 +97,8 @@ public class ListaController {
 
         List<Lista> listas = listaService.buscarListaPorUsuario(usuarioLogado.getIdUsuario());
         model.addAttribute("listas",listas);
+        model.addAttribute("temListas",!listas.isEmpty());
+
         return "listas-minhas";
     }
 
@@ -116,6 +118,9 @@ public class ListaController {
         //Doramas da lista:
         List<Dorama> listaDoramas = doramaService.buscarDoramasPorLista(idLista);
         model.addAttribute("doramas",listaDoramas);
+
+        int totalDoramas = doramaService.contarDoramasEmLista(idLista);
+        model.addAttribute("totalDoramas",totalDoramas);
         
         return "pagina-lista";
     }

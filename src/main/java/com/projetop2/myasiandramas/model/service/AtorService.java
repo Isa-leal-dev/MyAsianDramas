@@ -37,5 +37,9 @@ public class AtorService {
     public List<Ator> buscarAtoresPorDorama(int idDorama){
         return adao.buscarAtoresPorDorama(idDorama);
     }
+
+    public List<Ator> buscarAtoresPorNome(String nome){
+        return adao.buscarAtoresPorNome(nome);
+    }
     
 }

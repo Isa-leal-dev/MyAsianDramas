@@ -3,8 +3,11 @@
 <head>
     <title>Página da Lista</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<link rel="stylesheet" th:href="@{/css/base.css}"/>
 </head>
 <body>
+	<div th:insert="~{base :: topo}"></div>
+    <div th:insert="~{base :: menu}"></div>
     <span>Nome: </span>
     	<span th:text="${lista.nomeLista}"></span><br>
     <span>Descrição: </span>
@@ -30,5 +33,6 @@
        		</tr>
      	</tbody>
     </table>
+	<div th:insert="~{base :: rodape}"></div>
 </body>
 </html>

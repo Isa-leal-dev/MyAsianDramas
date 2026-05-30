@@ -7,65 +7,9 @@
   <link rel="stylesheet" th:href="@{css/landing.css}"/>
 </head>
 <body>
-  <!-- Topo -->
-  <header class="topbar">
-    <span class="brand">
-        <img class="brand-icon" th:src="@{img/korean-heart.png}" alt=""/>
-      <span class="brand-name">MyAsianDramas</span>
-    </span>
-    <p class="topbar-subtitulo">Organize seus doramas favoritos do seu jeito</p>
-    <!--Sem login:-->
-    <div class="topbar-right" th:if="${session.usuarioLogado == null}">
-      <a th:href="@{/login}">Login</a>
-      <span class="divisor">|</span> <!--Classe para não ficar com mesmo estilo que Login-->
-      <a th:href="@{/cadastro}" class="btn-cadastro">Cadastre-se</a>
-    </div>
-    <!--Com login-->
-    <div class="topbar-right" th:if="${session.usuarioLogado != null}">
-      <span th:text="${session.usuarioLogado.nome}"></span>
-      <span class="divisor">|</span> 
-      <a th:href="@{/logout}">Sair</a>
-    </div>
-  </header>
-
-  <!-- Barra de navegação / Menu -->
-  <nav class="navbar">
-    <a class="active" th:href="@{/}">Início</a>
-    <a th:href="@{/doramas/KR}">
-      <abbr title="Dramas Coreanos">K-Dramas</abbr>
-    </a>
-    <a th:href="@{/doramas/CN}">
-      <abbr title="Dramas Chineses">C-Dramas</abbr>
-    </a>
-    <a th:href="@{/doramas/JP}">
-      <abbr title="Dramas Japoneses">J-Dramas</abbr>
-    </a>
-    <a th:href="@{/doramas/TH}">
-      <abbr title="Dramas Tailandeses">Th-Dramas</abbr>
-    </a>
-    <a th:href="@{/doramas/TW}">
-      <abbr title="Dramas Taiwaneses">Tw-Dramas</abbr>
-    </a>
-    <div class="navbar-dropdown">
-    <span>Listas</span>
-      <div class="dropdown-menu">
-        <a th:href="@{/listas/minhas}">Ver Minhas Listas</a>
-        <a th:href="@{/listas/criar}">Criar Nova Lista</a>
-      </div>
-    </div>
-    <div class="navbar-busca">
-      <form method="get" th:action="@{/resultados-busca}">
-        <input type="text" name="titulo" placeholder="Buscar dorama..."/>
-          <button type="submit">
-            <i class="fa-solid fa-magnifying-glass"></i>
-          </button>
-      </form>
-    </div>
-  </nav>
-
-  <!-- Conteúdo Principal -->
+  <div th:insert="~{base :: topo}"></div>
+  <div th:insert="~{base :: menu}"></div>
   <main>
-
     <!-- Doramas Em Andamento -->
     <div class="section-header">
       <h2>Doramas Em Andamento</h2>
@@ -91,78 +35,26 @@
     <div class="section-header">
       <h2>Doramas por Gênero</h2>
       <div class="section-line"></div>
-      <a class="ver-mais">Ver mais</a>
+      <a class="ver-mais" th:href="@{/doramas/todos}">Ver todos</a>
     </div>
 
-    <div class="op-grid">
-      <span th:each="g : ${generos}" class="op-btn" th:text="${g.descricao}"></span>
+    <div class="op-grid" id="generos">
+      <a th:each="g : ${generos}" 
+            th:href="@{/(idGenero=${g.idGenero})} + '#generos'"
+            th:classappend="${generoSelecionado == g.idGenero} ? ' active'"
+            class="op-btn" 
+            th:text="${g.descricao}"></a>
+        <!--Para cada gênero vai ter a referência para o idGenero do gênero do botão com a div identificada como generos
+        adiciona 'active' na classe op-btn se o genero selecionado é o idGenero do botão-->
     </div>
 
     <div class="lista-porgeneros">
 
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/jp.png" alt="Japão"/>
-      <span class="lista-titulo">Shitsuren Karuta</span>
-    </div>
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-      <span class="lista-titulo">Magic Move</span>
-    </div>
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/jp.png" alt="Japão"/>
-      <span class="lista-titulo">Azure Spring</span>
-    </div>
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/th.png" alt="Tailândia"/>
-      <span class="lista-titulo">Wu the Series</span>
-    </div>
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-      <span class="lista-titulo">The Scarecrow</span>
-    </div>
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/jp.png" alt="Japão"/>
-      <span class="lista-titulo">Reborn</span>
-    </div>
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-      <span class="lista-titulo">The Legend of Kitchen Soldier</span>
-    </div>
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-      <span class="lista-titulo">Born with Luck</span>
-    </div>
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-      <span class="lista-titulo">Wanna One Go: Back to Base</span>
-    </div>
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
-      <span class="lista-titulo">The Lead</span>
-    </div>
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
-      <span class="lista-titulo">The Lead</span>
-    </div>
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
-      <span class="lista-titulo">The Lead</span>
-    </div>
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
-      <span class="lista-titulo">The Lead</span>
-    </div>
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
-      <span class="lista-titulo">The Lead</span>
-    </div>
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
-      <span class="lista-titulo">The Lead</span>
-    </div>
-    <div class="lista-item">
-      <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
-      <span class="lista-titulo">The Lead</span>
+    <div class="lista-item" th:each="dg : ${doramasGenero}">
+      <img class="doramas-flag"
+          th:src="'https://flagcdn.com/24x18/' + ${dg.pais.name().toLowerCase()} + '.png'"
+          th:alt="${dg.pais.descricao}"/>
+      <span class="lista-titulo" th:text="${dg.tituloPortugues}"></span>
     </div>
   </div>
 
@@ -172,105 +64,61 @@
       <div class="section-line"></div>
     </div>
 
-    <div class="op-grid">
-      <span class="op-btn">Jan</span>
-      <span class="op-btn">Fev</span>
-      <span class="op-btn">Mar</span>
-      <span class="op-btn">Abr</span>
-      <span class="op-btn active">Mai</span> <!--Active apenas para visualização-->
-      <span class="op-btn">Jun</span>
-      <span class="op-btn">Jul</span>
-      <span class="op-btn">Ago</span>
-      <span class="op-btn">Set</span>
-      <span class="op-btn">Out</span>
-      <span class="op-btn">Nov</span>
-      <span class="op-btn">Dez</span>
+    <div class="op-grid" id="lancamentos">
+      <a th:href="@{/(mes=1)}+ '#lancamentos'" 
+          th:classappend="${mesSelecionado == 1} ? ' active'"
+          class="op-btn">Jan</a>
+      <a th:href="@{/(mes=2)}+ '#lancamentos'" 
+          th:classappend="${mesSelecionado == 2} ? ' active'"
+          class="op-btn">Fev</a>
+      <a th:href="@{/(mes=3)}+ '#lancamentos'" 
+          th:classappend="${mesSelecionado == 3} ? ' active'" 
+          class="op-btn">Mar</a>
+      <a th:href="@{/(mes=4)}+ '#lancamentos'" 
+          th:classappend="${mesSelecionado == 4} ? ' active'" 
+          class="op-btn">Abr</a>
+      <a th:href="@{/(mes=5)}+ '#lancamentos'" 
+          th:classappend="${mesSelecionado == 5} ? ' active'" 
+          class="op-btn">Mai</a>
+      <a th:href="@{/(mes=6)}+ '#lancamentos'" 
+          th:classappend="${mesSelecionado == 6} ? ' active'" 
+          class="op-btn">Jun</a>
+      <a th:href="@{/(mes=7)}+ '#lancamentos'" 
+          th:classappend="${mesSelecionado == 7} ? ' active'" 
+          class="op-btn">Jul</a>
+      <a th:href="@{/(mes=8)}+ '#lancamentos'" 
+          th:classappend="${mesSelecionado == 8} ? ' active'" 
+          class="op-btn">Ago</a>
+      <a th:href="@{/(mes=9)}+ '#lancamentos'" 
+          th:classappend="${mesSelecionado == 9} ? ' active'" 
+          class="op-btn">Set</a>
+      <a th:href="@{/(mes=10)}+ '#lancamentos'" 
+          th:classappend="${mesSelecionado == 10} ? ' active'" 
+          class="op-btn">Out</a>
+      <a th:href="@{/(mes=11)}+ '#lancamentos'" 
+          th:classappend="${mesSelecionado == 11} ? ' active'" 
+          class="op-btn">Nov</a>
+      <a th:href="@{/(mes=12)}+ '#lancamentos'" 
+          th:classappend="${mesSelecionado == 12} ? ' active'" 
+          class="op-btn">Dez</a>
     </div>
+
     <div class="lista-lancamentos">
-    <div class="lista-data-grupo">
-      <span class="lista-data">01 de maio</span>
-      <div class="lista-item">
-        <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-        <span class="lista-titulo">KBS Drama</span>
-      </div>
+    <!--Agrupamento por data-->
+    <div th:each="registro : ${lancamentos}" class="lista-data-grupo">
+        <span class="lista-data" th:text="'DIA '+ ${registro.key.dayOfMonth}"></span> <!--dayOfMonth = método de LocalDate-->
+        <!--Doramas da data-->
+        <div th:each="dorama : ${registro.value}" class="lista-item">
+            <img class="doramas-flag" 
+                 th:src="'https://flagcdn.com/24x18/' + ${dorama.pais.name().toLowerCase()} + '.png'"
+                 th:alt="${dorama.pais.descricao}"/>
+            <span class="lista-titulo" th:text="${dorama.tituloPortugues}"></span>
+        </div>
     </div>
-    <div class="lista-data-grupo">
-      <span class="lista-data">06 de maio</span>
-      <div class="lista-item">
-        <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-        <span class="lista-titulo">Drama A</span>
-      </div>
-      <div class="lista-item">
-        <img class="doramas-flag" src="https://flagcdn.com/24x18/cn.png" alt="China"/>
-        <span class="lista-titulo">Drama B</span>
-      </div>
     </div>
-
-    <div class="lista-data-grupo">
-      <span class="lista-data">08 de maio</span>
-      <div class="lista-item">
-        <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-        <span class="lista-titulo">My Royal Nemesis</span>
-      </div>
-    </div>
-
-    <div class="lista-data-grupo">
-      <span class="lista-data">11 de maio</span>
-      <div class="lista-item">
-        <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-        <span class="lista-titulo">The Legend of Kitchen Soldier</span>
-      </div>
-    </div>
-
-    <div class="lista-data-grupo">
-      <span class="lista-data">12 de maio</span>
-      <div class="lista-item">
-        <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-        <span class="lista-titulo">Reborn Rookie</span>
-      </div>
-    </div>
-
-    <div class="lista-data-grupo">
-      <span class="lista-data">14 de maio</span>
-      <div class="lista-item">
-        <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-        <span class="lista-titulo">Soul Mate</span>
-      </div>
-    </div>
-
-    <div class="lista-data-grupo">
-      <span class="lista-data">15 de maio</span>
-      <div class="lista-item">
-        <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-        <span class="lista-titulo">The WONDERfools</span>
-      </div>
-      <div class="lista-item">
-        <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-        <span class="lista-titulo">Drama B</span>
-      </div>
-    </div>
-
-    <div class="lista-data-grupo">
-      <span class="lista-data">22 de maio</span>
-      <div class="lista-item">
-        <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-        <span class="lista-titulo">Fifties Professionals</span>
-      </div>
-    </div>
-
-    <div class="lista-data-grupo">
-      <span class="lista-data">30 de maio</span>
-      <div class="lista-item">
-        <img class="doramas-flag" src="https://flagcdn.com/24x18/kr.png" alt="Coreia"/>
-        <span class="lista-titulo">Reborn Rookie 2</span>
-      </div>
-    </div>
-  </div>
   </main>
 
-  <footer>
-    <p>MyAsianDramas &copy; 2026 &mdash; Feito com <span>♥</span> para fãs de doramas</p>
-  </footer>
+  <div th:insert="~{base :: rodape}"></div>
 
 </body>
 </html>

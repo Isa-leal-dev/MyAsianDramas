@@ -48,4 +48,11 @@ public class AtorDAO extends BaseDAO{
         return Ator.converterLista(listaRegistros);
     }
 
+    public List<Ator> buscarAtoresPorNome(String nome){
+        String sql = "SELECT * FROM tb_atores WHERE nome_ator ILIKE ?";
+        String nomeBuscado = "%"+nome+"%";
+        List<Map<String,Object>> listaRegistros = jdbc.queryForList(sql, nomeBuscado);
+        return Ator.converterLista(listaRegistros);       
+    }
+
 }

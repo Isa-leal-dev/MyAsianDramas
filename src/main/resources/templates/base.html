@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<!-- Topo -->
+ <div th:fragment="topo">
+  <header class="topbar">
+    <span class="brand">
+        <img class="brand-icon" th:src="@{/img/korean-heart.png}" alt=""/>
+      <span class="brand-name">MyAsianDramas</span>
+    </span>
+    <p class="topbar-subtitulo">Organize seus doramas favoritos do seu jeito</p>
+    <!--Sem login:-->
+    <div class="topbar-right" th:if="${session.usuarioLogado == null}">
+      <a th:href="@{/login}">Login</a>
+      <span class="divisor">|</span> <!--Classe para não ficar com mesmo estilo que Login-->
+      <a th:href="@{/cadastro}" class="btn-cadastro">Cadastre-se</a>
+    </div>
+    <!--Com login-->
+    <div class="topbar-right" th:if="${session.usuarioLogado != null}">
+      <span th:text="${session.usuarioLogado.nome}"></span>
+      <span class="divisor">|</span> 
+      <a th:href="@{/logout}">Sair</a>
+    </div>
+   </header>
+  </div>
+
+ <!-- Barra de navegação / Menu -->
+  <div th:fragment="menu">
+  <nav class="navbar">
+    <a th:href="@{/}">Início</a>
+    <a th:href="@{/doramas/KR}">
+      <abbr title="Dramas Coreanos">K-Dramas</abbr>
+    </a>
+    <a th:href="@{/doramas/CN}">
+      <abbr title="Dramas Chineses">C-Dramas</abbr>
+    </a>
+    <a th:href="@{/doramas/JP}">
+      <abbr title="Dramas Japoneses">J-Dramas</abbr>
+    </a>
+    <a th:href="@{/doramas/TH}">
+      <abbr title="Dramas Tailandeses">Th-Dramas</abbr>
+    </a>
+    <a th:href="@{/doramas/TW}">
+      <abbr title="Dramas Taiwaneses">Tw-Dramas</abbr>
+    </a>
+    <div class="navbar-dropdown">
+    <span>Listas</span>
+      <div class="dropdown-menu">
+        <a th:href="@{/listas/minhas}">Ver Minhas Listas</a>
+        <a th:href="@{/listas/criar}">Criar Nova Lista</a>
+      </div>
+    </div>
+    <div class="navbar-busca">
+      <form method="get" th:action="@{/resultados-busca}">
+        <input type="text" name="titulo" placeholder="Buscar dorama..."/>
+          <button type="submit">
+            <i class="fa-solid fa-magnifying-glass"></i>
+          </button>
+      </form>
+    </div>
+   </nav>
+  </div>
+
+  <!--Rodapé-->
+  <div th:fragment="rodape">
+    <footer>
+        <p>MyAsianDramas &copy; 2026 &mdash; Feito com <span>♥</span> para fãs de doramas</p>
+    </footer>
+  </div>
+</body>

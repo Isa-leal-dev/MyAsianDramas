@@ -4,46 +4,13 @@
     <title>Crie sua Lista</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
-    <link rel="stylesheet" th:href="@{css/base.css}"/>
-    <link rel="stylesheet" th:href="@{css/criar-lista.css}"/>
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
+    <link rel="stylesheet" th:href="@{/css/criar-lista.css}"/>
 
 </head>
 <body>
-    <!-- Topo -->
-  <header class="topbar">
-    <span class="brand">
-        <img class="brand-icon" th:src="@{img/korean-heart.png}" alt=""/>
-      <span class="brand-name">MyAsianDramas</span>
-    </span>
-    <p class="topbar-subtitulo">Organize seus doramas favoritos do seu jeito</p>
-    <div class="topbar-right">
-      <span>Usuário logado</span>
-    </div>
-  </header>
-
-  <!-- Barra de navegação / Menu -->
-  <nav class="navbar">
-    <a th:href="@{/}">Início</a>
-    <span><abbr title="Dramas Coreanos">K-Dramas</abbr></span>
-    <span><abbr title="Dramas Chineses">C-Dramas</abbr></span>
-    <span><abbr title="Dramas Japoneses">J-Dramas</abbr></span>
-    <span><abbr title="Dramas Tailandeses">Th-Dramas</abbr></span>
-    <span><abbr title="Dramas Taiwaneses">Tw-Dramas</abbr></span>
-    <div class="navbar-dropdown">
-      <span class="active">Listas</span>
-      <div class="dropdown-menu">
-        <a th:href="@{/listas/minhas}">Ver Minhas Listas</a>
-        <a th:href="@{/listas/criar}">Criar Nova Lista</a>
-      </div>
-    </div>
-    <div class="navbar-busca">
-      <input type="text" placeholder="Buscar dorama..."/>
-      <div class = "navbar-icone">
-          <i class="fa-solid fa-magnifying-glass"></i>
-      </div>
-    </div>
-  </nav>
-
+  <div th:insert="~{base :: topo}"></div>
+  <div th:insert="~{base :: menu}"></div>
   <main>
     <div class="form-container">
 
@@ -82,9 +49,7 @@
     </div>
   </main>
 
-  <footer>
-    <p>MyAsianDramas &copy; 2026 &mdash; Feito com <span>♥</span> para fãs de doramas</p>
-  </footer>
+  <div th:insert="~{base :: rodape}"></div>
 
 </body>
 </html>

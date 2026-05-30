@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Login | MyAsianDramas</title>
+
+    <link rel="stylesheet" th:href="@{/css/auth.css}">
+
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="background-words">
+    <span>Bem-vindo</span>
+    <span>환영합니다</span>
+    <span>ようこそ</span>
+    <span>欢迎</span><!--Chinês simplificado-->
+    <span>ยินดีต้อนรับ</span>
+    <span>歡迎</span><!--Chinês tradicional-->
+    <span>어서 오세요</span>
+    <span>いらっしゃいませ</span>
+</div>
+
+<div class="auth-container">
+
+    <div class="logo-area">
+        <img th:src="@{/img/korean-heart.png}" alt="Logo">
+        <h1>MyAsianDramas</h1>
+        <p>Organize seus doramas favoritos do seu jeito</p>
+    </div>
+
+    <div class="auth-card">
+
+        <h2>Login</h2>
+
+        <form th:action="@{/login}" method="post">
+
+            <div class="input-group">
+                <label>Email</label>
+                <input type="email" name="email" placeholder="Digite seu email">
+            </div>
+
+            <div class="input-group">
+                <label>Senha</label>
+                <input type="password" name="senha" placeholder="Digite sua senha">
+            </div>
+
+            <button type="submit" class="btn-primary">Entrar</button>
+            <div class="auth-links">
+              <a th:href="@{/}"> ← Voltar para início </a>
+            </div>
+
+        </form>
+
+        <div class="auth-footer">
+            <span>Ainda não tem cadastro?</span>
+            <a th:href="@{/cadastro}">
+                Cadastre-se aqui
+            </a>
+        </div>
+
+        <p th:if="${erro}">Email ou senha incorretos!</p><!--Se email ou senha inválidos, mostra erro-->
+
+    </div>
+
+</div>
+
+</body>
+</html>

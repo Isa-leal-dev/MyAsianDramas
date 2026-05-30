@@ -92,11 +92,11 @@ public class DoramaDAO extends BaseDAO{
         return Dorama.converterLista(listaRegistros);
     }
 
-    public List<Dorama> buscarDoramasPorGenero(int idGenero){
+    public List<Dorama> buscarDoramasPorGenero(int idGenero, int limite){
         String sql = "SELECT d.* FROM tb_doramas d " +
                     "JOIN tb_doramas_generos dg ON d.id_dorama = dg.id_dorama " +
-                    "WHERE dg.id_genero = ?";
-        List<Map<String,Object>> listaRegistros = jdbc.queryForList(sql, idGenero);
+                    "WHERE dg.id_genero = ? LIMIT ?";
+        List<Map<String,Object>> listaRegistros = jdbc.queryForList(sql, idGenero, limite);
         return Dorama.converterLista(listaRegistros);
     }
 
@@ -106,6 +106,11 @@ public class DoramaDAO extends BaseDAO{
                     "WHERE ld.id_lista = ?";
         List<Map<String,Object>> listaRegistros = jdbc.queryForList(sql, idLista);
         return Dorama.converterLista(listaRegistros);
+    }
+    public int contarDoramasEmLista(int idLista) {
+        String sql = "SELECT COUNT(*) FROM tb_listas_doramas WHERE id_lista = ?";
+        Integer total = jdbc.queryForObject(sql,Integer.class,idLista);
+        return total;
     }
    
 }

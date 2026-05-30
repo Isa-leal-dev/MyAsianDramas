@@ -1,6 +1,10 @@
 package com.projetop2.myasiandramas.controller;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.LinkedHashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,17 +32,44 @@ public class MenuController {
     private GeneroService generoService;
 
     @GetMapping("/")
-    public String landingPage(Model model){
-        //14 Doramas em Andamento:
+    public String landingPage(Model model, 
+                              @RequestParam(required = false) Integer idGenero,
+                              @RequestParam(required = false) Integer mes){
+        
+        //Carrega o primeiro gênero por padrão quando ainda não foi selecionado nenhum:
+        if (idGenero == null)
+            idGenero = 1;
+        //Carrega o mês atual por padrão:
+        if (mes == null)
+            mes = LocalDate.now().getMonthValue();
+        
+        //Doramas em Andamento (14):
         List<Dorama> listaAndamento = doramaService.buscarDoramasPorStatusLimitado(14);
         model.addAttribute("doramas",listaAndamento);
 
-        //Gêneros:
-        List<Genero> opcoesGeneros = generoService.buscarTodosGeneros();
-        model.addAttribute("generos", opcoesGeneros);
+        //Doramas por gênero:
+        List<Dorama> listaPorGenero = doramaService.buscarDoramasPorGenero(idGenero,21);
+        model.addAttribute("doramasGenero",listaPorGenero);
+        model.addAttribute("generoSelecionado", idGenero);
+            //Botões:
+            List<Genero> opcoesGeneros = generoService.buscarTodosGeneros();
+            model.addAttribute("generos", opcoesGeneros);
+            
+
 
         //Lançamentos do Ano:
-
+        List<Dorama> listaAno = doramaService.buscarDoramasPorMes(mes);
+        model.addAttribute("mesSelecionado", mes); //Para adicionar classe de ativo no botão selecionado
+            //Agrupamento de doramas por data
+            Map<LocalDate, List<Dorama>> lancamentos = new LinkedHashMap<>();//LinkedHashMap mantém a ordem do que foi inserido
+                for(Dorama d : listaAno){
+                    LocalDate data = d.getDataEstreia();
+                    if(!lancamentos.containsKey(data)){//Se a data não está mapeada
+                        lancamentos.put(data, new ArrayList<>());//coloca a data no Map<LocalDate, e cria ArrayList, por enquanto vazio
+                    }
+                    lancamentos.get(data).add(d);//Sempre insere o dorama
+                }
+                model.addAttribute("lancamentos", lancamentos);
 
         return "landing";
     }
@@ -47,8 +78,10 @@ public class MenuController {
     //Busca de navbar:
      @GetMapping("/resultados-busca")
     public String mostrarDoramasBuscados(Model model, @RequestParam String titulo){
-        List<Dorama> lista = doramaService.buscarDoramasPorTitulo(titulo);
-        model.addAttribute("doramas",lista);
+        List<Dorama> listaDoramas = doramaService.buscarDoramasPorTitulo(titulo);
+        model.addAttribute("doramas",listaDoramas);
+        List<Ator> listaAtores = atorService.buscarAtoresPorNome(titulo);
+        model.addAttribute("atores",listaAtores);
         return "resultados-busca";
     }
     
@@ -79,6 +112,14 @@ public class MenuController {
         List<Dorama> lista = doramaService.buscarDoramasPorPais(pais);
         model.addAttribute("doramas",lista);
         return "dorama-pais";
+    }
+
+    //Todos os Doramas:
+    @GetMapping("/doramas/todos")
+    public String mostrarTodosDoramas(Model model){
+        List<Dorama> todosDoramas = doramaService.buscarTodosDoramas();
+        model.addAttribute("doramas",todosDoramas);
+        return "resultados-busca";
     }
 
     //READ - ATORES

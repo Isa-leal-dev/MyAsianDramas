@@ -156,6 +156,8 @@ a.grid-item {
   padding: 6px 14px;
   cursor: pointer;
   transition: all 0.2s;
+  text-decoration: none;
+  display: inline-block;
 }
 
 .op-btn:hover {
