@@ -73,17 +73,19 @@ body {
   gap: 20px;
 }
 
-.topbar-right span {
+.topbar-right a {
   color: var(--text-muted);
   font-size: 14px;
   font-weight: 400;
   letter-spacing: 0.3px;
   transition: color 0.2s;
+  cursor: pointer;
+  text-decoration: none;
 }
 
-.topbar-right span:hover:not(.divisor) { /*Quando passa mouse por login e | só considera as propriedades em Login*/
-    color: var(--text);
-    cursor: pointer;
+.topbar-right span{
+  color: var(--text-muted);
+  font-size: 14px;
 } 
 
 .btn-cadastro { /*Com important para sobrescrever o estilo de span*/
@@ -95,6 +97,7 @@ body {
   font-weight: 500 !important;
   letter-spacing: 0.8px;
   transition: all 0.2s !important;
+  text-decoration: none;
 }
 
 .btn-cadastro:hover {
@@ -113,6 +116,10 @@ body {
   height: 48px;
   overflow: visible;
   gap: 0;
+  top: 64px;
+  position: sticky;
+  z-index: 99;
+
 }
 
 .navbar::-webkit-scrollbar { display: none; }

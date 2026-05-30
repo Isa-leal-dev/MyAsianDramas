@@ -14,10 +14,17 @@
       <span class="brand-name">MyAsianDramas</span>
     </span>
     <p class="topbar-subtitulo">Organize seus doramas favoritos do seu jeito</p>
-    <div class="topbar-right">
-      <span>Login</span>
+    <!--Sem login:-->
+    <div class="topbar-right" th:if="${session.usuarioLogado == null}">
+      <a th:href="@{/login}">Login</a>
       <span class="divisor">|</span> <!--Classe para não ficar com mesmo estilo que Login-->
-      <span class="btn-cadastro">Cadastre-se</span>
+      <a th:href="@{/cadastro}" class="btn-cadastro">Cadastre-se</a>
+    </div>
+    <!--Com login-->
+    <div class="topbar-right" th:if="${session.usuarioLogado != null}">
+      <span th:text="${session.usuarioLogado.nome}"></span>
+      <span class="divisor">|</span> 
+      <a th:href="@{/logout}">Sair</a>
     </div>
   </header>
 
