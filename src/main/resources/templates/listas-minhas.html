@@ -44,18 +44,25 @@
                         <i class="fa-regular fa-calendar"></i>Criada em <span th:text="${lista.criadaEm}"></span>
                     </span>
                     <div class="lista-acoes">
-                        <a th:href="@{/listas/{id}/atualizar(id=${lista.idLista})}" class="btn-acao btn-editar">
+                        <a th:href="'/listas/' + ${lista.idLista} + '/atualizar'" class="btn-acao btn-editar">
                             <i class="fa-solid fa-pen"></i>Editar
                         </a>
-                        <button class="btn-acao btn-excluir">
-                            <i class="fa-solid fa-trash"></i>Excluir
-                    	</button>
+                        <form th:action="'/listas/' + ${lista.idLista} + '/deletar'" 
+                              method="post"
+                              onsubmit="return confirm('Tem certeza que deseja excluir esta lista?')">
+                            <button class="btn-acao btn-excluir">
+                                <i class="fa-solid fa-trash"></i>Excluir
+                            </button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
   </main>
+    <script th:if="${erro}">
+        alert('Remova os doramas da lista antes de excluir!');
+    </script>
 
   <div th:insert="~{base :: rodape}"></div>
 </body>

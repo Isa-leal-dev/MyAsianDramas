@@ -33,6 +33,12 @@ public class ListaDAO extends BaseDAO {
         return Lista.converterLista(listaRegistros);
     }
 
+    public int contarDoramasEmLista(int idLista) {
+        String sql = "SELECT COUNT(*) FROM tb_lista_doramas WHERE id_lista = ?";
+        Integer total = jdbc.queryForObject(sql,Integer.class,idLista);
+        return total;
+    }
+
     //UPDATE:
     public void atualizarLista(int idLista, Lista atualizada){
         String sql = "UPDATE tb_listas SET nome_lista = ? ,descricao = ? where id_lista = ?";
@@ -41,6 +47,12 @@ public class ListaDAO extends BaseDAO {
         obj[1] = atualizada.getDescricao(); 
         obj[2] = idLista;
         jdbc.update(sql,obj);
+    }
+
+    //DELETE:
+    public void deletarLista(int idLista){
+        String sql = "DELETE FROM tb_listas WHERE id_lista = ?";
+        jdbc.update(sql,idLista);
     }
 
 }

@@ -4,7 +4,7 @@ public enum PaisDorama {
     KR("Coréia do Sul"),
     JP("Japão"),
     CN("China"),
-    TH("Thailândia"),
+    TH("Tailândia"),
     TW("Taiwan");
 
     private final String descricao;

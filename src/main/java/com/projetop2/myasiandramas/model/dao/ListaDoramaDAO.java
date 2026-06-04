@@ -16,4 +16,10 @@ public class ListaDoramaDAO extends BaseDAO{
         jdbc.update(sql,obj);
     }
 
+    //DELETE:
+    public void removerDoramaDaLista(ListaDorama ld){
+        String sql = "DELETE FROM tb_lista_doramas WHERE id_lista = ? AND id_dorama = ?";
+        jdbc.update(sql,ld.getIdLista(),ld.getIdDorama());
+    }
+
 }

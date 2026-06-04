@@ -30,9 +30,18 @@ public class ListaService {
         return ldao.buscarListaPorUsuario(idUsuario);
     }
 
+    public int contarDoramasEmLista(int idLista){
+        return ldao.contarDoramasEmLista(idLista);
+    }
+
     //UPDATE:
     public void atualizarLista(int id, Lista atualizada){
         ldao.atualizarLista(id, atualizada);
+    }
+
+    //DELETE:
+    public void deletarLista(int idLista){
+        ldao.deletarLista(idLista);
     }
 
 }

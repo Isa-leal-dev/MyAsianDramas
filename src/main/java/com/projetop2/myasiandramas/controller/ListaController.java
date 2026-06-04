@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.projetop2.myasiandramas.model.Dorama;
 import com.projetop2.myasiandramas.model.Lista;
@@ -89,7 +90,8 @@ public class ListaController {
 
     @GetMapping("/listas/minhas")
     public String mostrarLista(Model model, 
-                               HttpSession session){
+                               HttpSession session,
+                               @RequestParam(defaultValue = "false") boolean erro){
 
         Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
         if (usuarioLogado == null)
@@ -98,6 +100,8 @@ public class ListaController {
         List<Lista> listas = listaService.buscarListaPorUsuario(usuarioLogado.getIdUsuario());
         model.addAttribute("listas",listas);
         model.addAttribute("temListas",!listas.isEmpty());
+
+        model.addAttribute("erro", erro);
 
         return "listas-minhas";
     }
@@ -119,7 +123,7 @@ public class ListaController {
         List<Dorama> listaDoramas = doramaService.buscarDoramasPorLista(idLista);
         model.addAttribute("doramas",listaDoramas);
 
-        int totalDoramas = doramaService.contarDoramasEmLista(idLista);
+        int totalDoramas = listaService.contarDoramasEmLista(idLista);
         model.addAttribute("totalDoramas",totalDoramas);
         
         return "pagina-lista";
@@ -153,6 +157,37 @@ public class ListaController {
         lista.setIdUsuario(usuarioLogado.getIdUsuario());
 
         listaService.atualizarLista(idLista, lista);
+		return "redirect:/listas/minhas";
+    }
+
+    //DELETE:
+    @PostMapping("/listas/{idLista}/remover-dorama")
+    public String removerDorama(@PathVariable int idLista,
+                                @RequestParam int idDorama,
+                                HttpSession session){
+        
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null)
+            return "redirect:/login";
+
+        ListaDorama ld = new ListaDorama(idLista, idDorama);
+        listaDoramaService.removerDoramaDaLista(ld);
+        return "redirect:/listas/" + idLista;
+    }
+
+    @PostMapping("/listas/{idLista}/deletar")
+    public String deletarLista(@PathVariable int idLista,
+                               HttpSession session){
+
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null)
+            return "redirect:/login";
+
+        //Se há doramas na lista, retorna erro ao tentar excluir:
+        if(listaService.contarDoramasEmLista(idLista)>0)
+            return "redirect:/listas/minhas?erro=true";
+
+        listaService.deletarLista(idLista);
 		return "redirect:/listas/minhas";
     }
 

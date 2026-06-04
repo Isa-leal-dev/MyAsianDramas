@@ -68,8 +68,4 @@ public class DoramaService {
         return ddao.buscarDoramasPorLista(idLista);
     }
 
-    public int contarDoramasEmLista(int idLista){
-        return ddao.contarDoramasEmLista(idLista);
-    }
-
 }

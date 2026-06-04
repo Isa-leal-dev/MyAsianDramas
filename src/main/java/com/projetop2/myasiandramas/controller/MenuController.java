@@ -15,10 +15,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.projetop2.myasiandramas.model.Ator;
 import com.projetop2.myasiandramas.model.Dorama;
+import com.projetop2.myasiandramas.model.Elenco;
 import com.projetop2.myasiandramas.model.Genero;
 import com.projetop2.myasiandramas.model.PaisDorama;
 import com.projetop2.myasiandramas.model.service.AtorService;
 import com.projetop2.myasiandramas.model.service.DoramaService;
+import com.projetop2.myasiandramas.model.service.ElencoService;
 import com.projetop2.myasiandramas.model.service.GeneroService;
 
 @Controller
@@ -30,6 +32,8 @@ public class MenuController {
     private AtorService atorService; 
     @Autowired
     private GeneroService generoService;
+    @Autowired
+    private ElencoService elencoService;
 
     @GetMapping("/")
     public String landingPage(Model model, 
@@ -91,8 +95,11 @@ public class MenuController {
         Dorama d = doramaService.buscarDoramaPorId(id);
         model.addAttribute("dorama",d);
         //Elenco:
-        List<Ator> elenco = atorService.buscarAtoresPorDorama(id);
-        model.addAttribute("elenco",elenco);
+        List<Ator> atores = atorService.buscarAtoresPorDorama(id);
+        model.addAttribute("atores",atores);
+            //Personagem:
+            List<Elenco> personagens = elencoService.verificarPersonagem(id);
+            model.addAttribute("personagens",personagens);
 
         return "pagina-dorama";
     }

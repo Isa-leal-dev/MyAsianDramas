@@ -107,10 +107,5 @@ public class DoramaDAO extends BaseDAO{
         List<Map<String,Object>> listaRegistros = jdbc.queryForList(sql, idLista);
         return Dorama.converterLista(listaRegistros);
     }
-    public int contarDoramasEmLista(int idLista) {
-        String sql = "SELECT COUNT(*) FROM tb_listas_doramas WHERE id_lista = ?";
-        Integer total = jdbc.queryForObject(sql,Integer.class,idLista);
-        return total;
-    }
    
 }
