@@ -83,7 +83,7 @@ public class ListaController {
     @PostMapping("/listas/adicionar-dorama")
     public String adicionarDorama(@ModelAttribute ListaDorama ld){
         listaDoramaService.inserirDoramaEmLista(ld);
-        return "redirect:/dorama/" + ld.getIdDorama();
+        return "redirect:/listas/" + ld.getIdLista();
     }
 
     //READ

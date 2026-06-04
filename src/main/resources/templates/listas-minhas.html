@@ -35,13 +35,13 @@
 
             <div class="lista-card-body">
                 <div class="lista-card-header">
-                    <a th:href="@{/listas/{id}(id=${lista.idLista})}" class="lista-nome" th:text="${lista.nomeLista}"></a>
+                    <a th:href="'/listas/' + ${lista.idLista}" class="lista-nome" th:text="${lista.nomeLista}"></a>
                 </div>
                 <p class="lista-descricao" th:text="${lista.descricao}"></p>
 
                 <div class="lista-card-footer">
-                    <span class="lista-data">
-                        <i class="fa-regular fa-calendar"></i>Criada em <span th:text="${lista.criadaEm}"></span>
+                    <span class="lista-data"> <!--criadaEmFormatada - getter adicionado após ConversorData criado-->
+                        <i class="fa-regular fa-calendar"></i>Criada em <span th:text="${lista.criadaEmFormatada}"></span>
                     </span>
                     <div class="lista-acoes">
                         <a th:href="'/listas/' + ${lista.idLista} + '/atualizar'" class="btn-acao btn-editar">

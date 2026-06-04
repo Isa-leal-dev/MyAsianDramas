@@ -149,6 +149,15 @@ public class Dorama {
         this.numeroEpisodios = numeroEpisodios;
     }
 
+    //Formatação de data:
+    public String getDataEstreiaFormatada(){
+        return ConversorData.converterData(dataEstreia);
+    }
+
+    public String getDataFinalFormatada(){
+        return ConversorData.converterData(dataFinal);
+    }
+
     public static Dorama converterRegistros(Map<String,Object> registros){
         LocalDate dataEstreia = registros.get("data_estreia") != null ? //data é retornada como java.sqlDate
                                 ((java.sql.Date) registros.get("data_estreia")).toLocalDate() //Precisa converter para LocalDate

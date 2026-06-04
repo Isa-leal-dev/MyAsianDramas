@@ -94,6 +94,11 @@ public class MenuController {
     public String mostrarPaginaDorama(Model model, @PathVariable int id){
         Dorama d = doramaService.buscarDoramaPorId(id);
         model.addAttribute("dorama",d);
+        
+        //Gêneros:
+        List<String> generos = generoService.buscarGenerosPorDorama(id);
+        model.addAttribute("generos",generos);
+
         //Elenco:
         List<Ator> atores = atorService.buscarAtoresPorDorama(id);
         model.addAttribute("atores",atores);

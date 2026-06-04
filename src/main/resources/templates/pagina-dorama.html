@@ -49,18 +49,29 @@
                         <span class="info-label">Emissora</span>
                         <span class="info-valor" th:text="${dorama.emissoraOriginal}"></span>
                     </div>
-                    <div class="info-linha">
+
+            <!--dataEstreiaFormatada e dataFinalFormatada - getters adicionados após ConversorData criado-->
+                    <div class="info-linha">  
                         <span class="info-label">Estreia</span>
-                        <span class="info-valor" th:text="${dorama.dataEstreia}"></span>
+                        <span class="info-valor" th:text="${dorama.dataEstreiaFormatada}"></span>
                     </div>
                     <div class="info-linha" th:if="${dorama.dataFinal != null}">
                         <span class="info-label">Encerramento</span>
-                        <span class="info-valor" th:text="${dorama.dataFinal}"></span>
+                        <span class="info-valor" th:text="${dorama.dataFinalFormatada}"></span>
+                    </div>
+
+                    <div class="info-linha">
+                        <span class="info-label">Gêneros</span>
+                        <div class="info-valor generos-lista">
+                            <span th:each="genero : ${generos}" 
+                                  class="genero-tag" 
+                                  th:text="${genero}"></span>
+                        </div>
                     </div>
                 </div>
 
                 <!-- Botão adicionar à lista -->
-                <a th:href="@{/listas/adicionar-dorama/{id}(id=${dorama.idDorama})}"
+                <a th:href="'/listas/adicionar-dorama/' + ${dorama.idDorama}"
                    th:if="${session.usuarioLogado != null}"
                    class="btn-adicionar">
                     <i class="fa-solid fa-plus"></i> Adicionar à Lista
@@ -79,12 +90,13 @@
             <h2 class="secao-titulo">Elenco</h2>
             <div class="elenco-grid">
                 <div class="ator-card" th:each="ator : ${atores}">
-                    <a th:href="@{/ator/{id}(id=${ator.idAtor})}">
+
+                    <a th:href="'/ator/' + ${ator.idAtor}">
                         <img class="ator-foto"
                              th:src="${ator.fotoPerfil}"
                              th:alt="${ator.nomeAtor}"/>
                     </a>
-                    <a th:href="@{/ator/{id}(id=${ator.idAtor})}"
+                    <a th:href="'/ator/' + ${ator.idAtor}"
                        class="ator-nome"
                        th:text="${ator.nomeAtor}"></a>
 

@@ -19,7 +19,8 @@
                 <p class="lista-descricao" th:text="${lista.descricao}" th:if="${lista.descricao != null}"></p>
                 <span class="lista-meta">
                     <i class="fa-regular fa-calendar"></i>
-                    Criada em <span th:text="${lista.criadaEm} + ' | ' + ${totalDoramas} + ' dorama(s)'"></span>
+					 <!--criadaEmFormatada - getter adicionado após ConversorData criado-->
+                    Criada em <span th:text="${lista.criadaEmFormatada} + ' | ' + ${totalDoramas} + ' dorama(s)'"></span>
                 </span>
             </div>
             <a th:href="@{/listas/minhas}" class="btn-voltar">
@@ -36,13 +37,13 @@
 			<div class="dorama-card" th:each="dorama : ${doramas}">
 
 				<!-- Poster -->
-				<a th:href="@{/dorama/{id}(id=${dorama.idDorama})}" class="dorama-poster-link">
+				<a th:href="'/dorama/' + ${dorama.idDorama}" class="dorama-poster-link">
                 <img class="dorama-poster"
 					 	th:src="${dorama.poster}"
 						th:alt="${dorama.tituloPortugues}">
 				<!-- Informações -->
 				<div class="dorama-info">
-					<a th:href="@{/dorama/{id}(id=${dorama.idDorama})}" class="titulo-pt"
+					<a th:href="'/dorama/' + ${dorama.idDorama}" class="titulo-pt"
 								th:text="${dorama.tituloPortugues}"></a>
 					<p class="titulo-en" th:text="${dorama.tituloIngles}"></p>
 					<p class="titulo-nativo" th:text="${dorama.tituloNativo}"></p>

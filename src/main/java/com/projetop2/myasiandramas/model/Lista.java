@@ -72,6 +72,11 @@ public class Lista {
         this.criadaEm = criadaEm;
     }
 
+    //Formatação de data:
+    public String getCriadaEmFormatada(){
+        return ConversorData.converterData(criadaEm);
+    }
+
     public static Lista converterRegistros(Map<String,Object> registros){
 
         int idLista = (int) registros.get("id_lista");
