@@ -151,9 +151,7 @@ body {
 }
 
 .navbar a:hover,
-.navbar span:hover,
-.navbar a.active,
-.navbar span.active {
+.navbar span:hover {
   color: var(--gold);
   border-bottom-color: var(--gold);
 }

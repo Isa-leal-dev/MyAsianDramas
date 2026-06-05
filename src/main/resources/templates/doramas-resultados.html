@@ -1,7 +1,7 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="'Resultados para: ' + ${termoBuscado} + ' | MyAsianDramas'"></title>
+    <title th:text="${tituloPagina} + ' | MyAsianDramas'"></title>
     <meta charset="UTF-8"/>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
@@ -13,17 +13,11 @@
     <div th:insert="~{base :: menu}"></div>
 
 	<main>
-
-        <!-- Cabeçalho -->
         <div class="resultados-header">
-            <h1 class="resultados-titulo">
-                Resultados para: <span class="busca-termo" th:text="${termoBuscado}"></span>
-            </h1>
+            <h1 class="resultados-titulo" th:text="${tituloPagina}"></h1>
         </div>
 
-        <!-- Doramas encontrados -->
-        <div class="secao" th:if="${temDoramas}">
-            <h2 class="secao-titulo">Doramas</h2>
+        <div class="secao">
             <div class="resultados-grid">
                 <a th:href="'/dorama/' + ${d.idDorama}" 
                    class="resultado-card"
@@ -33,6 +27,9 @@
                          th:alt="${d.tituloPortugues}"/>
                     <div class="resultado-info">
                         <span class="resultado-titulo-pt" th:text="${d.tituloPortugues}"></span>
+                        <img class="dorama-flag" th:if="${mostrarBandeira}"
+                             th:src="'https://flagcdn.com/24x18/' + ${d.pais.name().toLowerCase()} + '.png'"
+                             th:alt="${d.pais.descricao}"/>
                         <span class="resultado-titulo-en" th:text="${d.tituloIngles}"></span>
                         <span class="resultado-titulo-nativo"
                               th:text="${d.tituloNativo}"
@@ -41,32 +38,6 @@
                     </div>
                 </a>
             </div>
-        </div>
-
-        <!-- Atores encontrados -->
-        <div class="secao" th:if="${temAtores}">
-            <h2 class="secao-titulo">Atores</h2>
-            <div class="resultados-grid">
-                <a th:href="'/ator/' + ${a.idAtor}"
-                   class="resultado-card"
-                   th:each="a : ${atores}">
-                    <img class="resultado-poster"
-                         th:src="${a.fotoPerfil}"
-                         th:alt="${a.nomeAtor}"/>
-                    <div class="resultado-info">
-                        <span class="resultado-titulo-pt" th:text="${a.nomeAtor}"></span>
-                        <span class="resultado-titulo-en"
-                              th:text="${a.nomeOriginal}"
-                              th:if="${a.nomeOriginal != a.nomeAtor}"></span>
-                    </div>
-                </a>
-            </div>
-        </div>
-
-        <!-- Nenhum resultado -->
-        <div class="sem-resultados" th:if="${!temDoramas && !temAtores}">
-            <i class="fa-solid fa-magnifying-glass"></i>
-            <p>Nenhum resultado encontrado para <strong th:text="${termoBuscado}"></strong></p>
         </div>
 
     </main>

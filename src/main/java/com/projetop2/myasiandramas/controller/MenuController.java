@@ -84,8 +84,14 @@ public class MenuController {
     public String mostrarDoramasBuscados(Model model, @RequestParam String titulo){
         List<Dorama> listaDoramas = doramaService.buscarDoramasPorTitulo(titulo);
         model.addAttribute("doramas",listaDoramas);
+        model.addAttribute("temDoramas",!listaDoramas.isEmpty());
+
         List<Ator> listaAtores = atorService.buscarAtoresPorNome(titulo);
         model.addAttribute("atores",listaAtores);
+        model.addAttribute("temAtores",!listaAtores.isEmpty());
+
+        model.addAttribute("termoBuscado", titulo);
+
         return "resultados-busca";
     }
     
@@ -114,7 +120,11 @@ public class MenuController {
     public String mostrarDoramasEmAndamento(Model model){
         List<Dorama> lista = doramaService.buscarEmAndamento();
         model.addAttribute("doramas",lista);
-        return "doramas-andamento";
+
+        model.addAttribute("tituloPagina", "Doramas em Andamento");
+        model.addAttribute("mostrarBandeira", true);
+
+        return "doramas-resultados";
     }
 
     //Página Doramas por país:
@@ -123,7 +133,11 @@ public class MenuController {
         model.addAttribute("pais",pais);
         List<Dorama> lista = doramaService.buscarDoramasPorPais(pais);
         model.addAttribute("doramas",lista);
-        return "dorama-pais";
+
+        model.addAttribute("tituloPagina", pais.getDescricao());
+        model.addAttribute("mostrarBandeira", false);
+
+        return "doramas-resultados";
     }
 
     //Todos os Doramas:
@@ -131,7 +145,11 @@ public class MenuController {
     public String mostrarTodosDoramas(Model model){
         List<Dorama> todosDoramas = doramaService.buscarTodosDoramas();
         model.addAttribute("doramas",todosDoramas);
-        return "resultados-busca";
+
+        model.addAttribute("tituloPagina", "Todos os Doramas");
+        model.addAttribute("mostrarBandeira", true);
+
+        return "doramas-resultados";
     }
 
     //READ - ATORES
