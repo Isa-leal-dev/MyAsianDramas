@@ -16,6 +16,14 @@ public class ListaDoramaDAO extends BaseDAO{
         jdbc.update(sql,obj);
     }
 
+    //READ:
+
+    public boolean doramaJaExisteNaLista(int idLista, int idDorama){
+        String sql = "SELECT COUNT(*) FROM tb_lista_doramas WHERE id_lista = ? AND id_dorama = ?";
+        Integer count = jdbc.queryForObject(sql,Integer.class, idLista, idDorama);
+        return count > 0;
+    }
+
     //DELETE:
     public void removerDoramaDaLista(ListaDorama ld){
         String sql = "DELETE FROM tb_lista_doramas WHERE id_lista = ? AND id_dorama = ?";

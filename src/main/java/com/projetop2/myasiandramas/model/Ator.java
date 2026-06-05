@@ -92,6 +92,10 @@ public class Ator {
         this.fotoPerfil = fotoPerfil;
     }
 
+    public String getDataNascimentoFormatada(){
+        return ConversorData.converterData(dataNascimento);
+    }
+
     public static Ator converterRegistros(Map<String,Object> registros){
 
         int idAtor = (int) registros.get("id_ator");

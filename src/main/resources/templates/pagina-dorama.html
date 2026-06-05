@@ -1,12 +1,12 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title th:text="${dorama.tituloPortugues} + ' | MyAsianDramas'">Página do Dorama</title>
+    <title th:text="${dorama.tituloPortugues} + ' | MyAsianDramas'"></title>
     <meta charset="UTF-8"/>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" th:href="@{/css/base.css}"/>
-    <link rel="stylesheet" th:href="@{/css/pagina-dorama.css}"/>
+    <link rel="stylesheet" th:href="@{/css/pagina-conteudo.css}"/>
 </head>
 <body>
     <div th:replace="~{base :: topo}"></div>
@@ -15,20 +15,20 @@
     <main>
 
         <!-- Poster e Dados gerais -->
-        <div class="dorama-topo">
+        <div class="conteudo-topo">
 
-            <img class="dorama-poster"
+            <img class="imagem-principal"
                  th:src="${dorama.poster}"
                  th:alt="${dorama.tituloPortugues}"/>
 
-            <div class="dorama-dados">
+            <div class="conteudo-dados">
                 <h1 class="titulo-pt" th:text="${dorama.tituloPortugues}"></h1>
                 <p class="titulo-en" th:text="${dorama.tituloIngles}"></p>
                 <p class="titulo-nativo"
                    th:text="${dorama.tituloNativo}"
                    th:if="${dorama.tituloNativo != dorama.tituloPortugues}"></p>
 
-                <div class="dorama-info-lista">
+                <div class="conteudo-info-lista">
                     <div class="info-linha">
                         <span class="info-label">País</span>
                         <span class="info-valor">
@@ -88,16 +88,16 @@
         <!-- Elenco -->
         <div class="secao">
             <h2 class="secao-titulo">Elenco</h2>
-            <div class="elenco-grid">
-                <div class="ator-card" th:each="ator : ${atores}">
+            <div class="conteudo-grid">
+                <div class="grid-card" th:each="ator : ${atores}">
 
                     <a th:href="'/ator/' + ${ator.idAtor}">
-                        <img class="ator-foto"
+                        <img class="grid-imagem"
                              th:src="${ator.fotoPerfil}"
                              th:alt="${ator.nomeAtor}"/>
                     </a>
                     <a th:href="'/ator/' + ${ator.idAtor}"
-                       class="ator-nome"
+                       class="item-label"
                        th:text="${ator.nomeAtor}"></a>
 
                     <span th:each="p : ${personagens}" 

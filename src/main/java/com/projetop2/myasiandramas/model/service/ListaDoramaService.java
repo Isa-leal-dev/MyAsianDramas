@@ -16,6 +16,10 @@ public class ListaDoramaService {
         lddao.inserirDoramaEmLista(ld);
     } 
 
+    public boolean doramaJaExisteNaLista(int idLista, int idDorama){
+        return lddao.doramaJaExisteNaLista(idLista, idDorama);
+    }
+
     public void removerDoramaDaLista(ListaDorama ld){
         lddao.removerDoramaDaLista(ld);
     }

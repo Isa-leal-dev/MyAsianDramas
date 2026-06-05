@@ -1,24 +1,62 @@
 <!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <title>Adicionar Dorama em Lista</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Adicionar à Lista | MyAsianDramas</title>
+    <meta charset="UTF-8"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" th:href="@{/css/base.css}"/>
+    <link rel="stylesheet" th:href="@{/css/lista-adicionar-dorama.css}"/>
 </head>
 <body>
-  <div th:insert="base :: topo"></div>
-  <div th:insert="base :: menu"></div>
- <form th:action="@{/listas/adicionar-dorama}" method="post">
-        <input type="hidden" name="idDorama" th:value="${dorama.idDorama}"/>
-        
-        <select name="idLista">
-            <option th:each="lista : ${minhasListas}" 
-                    th:value="${lista.idLista}" 
-                    th:text="${lista.nomeLista}"></option>
-        </select>
-        
-        <button type="submit">Adicionar à Lista</button>
-    </form>
- <div th:insert="~{base :: rodape}"></div>
+  <div th:replace="~{base :: topo}"></div>
+  <div th:replace="~{base :: menu}"></div>
+  <main>
+        <!-- Cabeçalho -->
+        <div class="page-header">
+            <div>
+                <h1 class="page-titulo">Adicionar à Lista</h1>
+                <p class="page-subtitulo">
+                    Selecione em qual lista deseja adicionar 
+                    <span class="dorama-destaque" th:text="${dorama.tituloPortugues}"></span>
+                </p>
+            </div>
+        </div>
+
+        <!-- Sem listas -->
+        <div class="listas-vazio" 
+            th:if="${!temListas}">
+            <p>Você ainda não tem nenhuma lista.</p>
+            <a th:href="@{/listas/criar}" class="btn-criar">Criar uma lista</a>
+        </div>
+
+        <!-- Form com cards de listas -->
+        <form th:action="@{/listas/adicionar-dorama}" 
+              method="post" 
+              th:if="${temListas}">
+            <input type="hidden" name="idDorama" th:value="${dorama.idDorama}"/>
+
+            <div class="listas-grid">
+                <label th:each="lista : ${minhasListas}" class="lista-card">
+                    <input type="radio" name="idLista" th:value="${lista.idLista}" class="lista-radio"/>
+
+                    <div class="lista-card-body">
+                        <span class="lista-nome" th:text="${lista.nomeLista}"></span>
+                        <span class="lista-descricao" 
+                              th:text="${lista.descricao}"></span>
+                    </div>
+                    <i fa-solid fa-circle-check></i>
+                </label>
+            </div>
+
+            <div class="form-acoes">
+                <a th:href="'/dorama/' + ${dorama.idDorama}" class="btn-cancelar">Cancelar</a>
+                <button type="submit" class="btn-confirmar">Confirmar</button>
+            </div>
+        </form>
+    </main>
+    <script th:if="${erro}">
+        alert('Este dorama já está adicionado na lista!');
+    </script>
+ <div th:replace="~{base :: rodape}"></div>
 </body>
 </html>

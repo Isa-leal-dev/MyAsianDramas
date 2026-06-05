@@ -66,7 +66,8 @@ public class ListaController {
     @GetMapping("/listas/adicionar-dorama/{idDorama}")
     public String adicionarDoramaLista(Model model, 
                                        @PathVariable int idDorama,
-                                       HttpSession session){
+                                       HttpSession session,
+                                       @RequestParam(defaultValue = "false") boolean erro){
 
         Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
         if (usuarioLogado == null) 
@@ -75,13 +76,30 @@ public class ListaController {
         Dorama d = doramaService.buscarDoramaPorId(idDorama);
         model.addAttribute("dorama",d);
 
-        //Listas para escolher quando for adicionar dorama em lista:
-        model.addAttribute("minhasListas", listaService.buscarListaPorUsuario(usuarioLogado.getIdUsuario()));
+        model.addAttribute("erro", erro);
+
+        //Listas do usuário para escolher quando for adicionar dorama em lista:
+        List<Lista> minhasListas = listaService.buscarListaPorUsuario(usuarioLogado.getIdUsuario());
+        model.addAttribute("minhasListas", minhasListas);
+        
+        //Verificação se há listas:
+        model.addAttribute("temListas",!minhasListas.isEmpty());
+
         return "lista-adicionar-dorama";
     }
 
     @PostMapping("/listas/adicionar-dorama")
-    public String adicionarDorama(@ModelAttribute ListaDorama ld){
+    public String adicionarDorama(@ModelAttribute ListaDorama ld,
+                                  HttpSession session){
+
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) 
+            return "redirect:/login";
+
+        //Se o dorama já está adicionado na lista:
+        if(listaDoramaService.doramaJaExisteNaLista(ld.getIdLista(), ld.getIdDorama()))
+            return "redirect:/listas/adicionar-dorama/" + ld.getIdDorama() + "?erro=true";
+
         listaDoramaService.inserirDoramaEmLista(ld);
         return "redirect:/listas/" + ld.getIdLista();
     }
@@ -99,6 +117,8 @@ public class ListaController {
 
         List<Lista> listas = listaService.buscarListaPorUsuario(usuarioLogado.getIdUsuario());
         model.addAttribute("listas",listas);
+
+        //Verificação se há listas:
         model.addAttribute("temListas",!listas.isEmpty());
 
         model.addAttribute("erro", erro);

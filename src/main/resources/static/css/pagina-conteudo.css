@@ -1,12 +1,12 @@
-/* TOPO: POSTER e DADOS */
-.dorama-topo {
+/* TOPO*/
+.conteudo-topo {
     display: flex;
     gap: 40px;
     align-items: flex-start;
     margin-bottom: 48px;
 }
 
-.dorama-poster {
+.imagem-principal {
     width: 300px;
     aspect-ratio: 2/3;
     object-fit: cover;
@@ -14,14 +14,14 @@
     flex-shrink: 0;
 }
 
-.dorama-dados {
+.conteudo-dados {
     flex: 1;
     display: flex;
     flex-direction: column;
     gap: 16px;
-    /*max-width: 500px;*/
 }
 
+/*Apenas pagina-dorama:*/
 .titulo-pt {
     font-family: 'Cormorant Garamond', serif;
     font-size: 36px;
@@ -40,8 +40,8 @@
     color: #b0a090;
 }
 
-/* LISTA DE INFORMAÇÕES */
-.dorama-info-lista {
+/* INFORMAÇÕES */
+.conteudo-info-lista {
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -74,6 +74,8 @@
     gap: 6px;
 }
 
+/*Apenas pagina-dorama:*/
+
 .info-valor img {
     border-radius: 2px;
 }
@@ -93,7 +95,7 @@
     padding: 3px 10px;
 }
 
-/* BOTÃO ADICIONAR */
+/* BOTÃO ADICIONAR - Apenas pagina-dorama:*/
 .btn-adicionar {
     display: inline-flex;
     align-items: center;
@@ -129,7 +131,7 @@
     border-bottom: 1px solid #e8e0d4;
 }
 
-/* SINOPSE */
+/* SINOPSE - Apenas pagina-dorama:*/
 .sinopse {
     font-size: 15px;
     color: #5a4a3a;
@@ -137,14 +139,20 @@
     /*max-width: 800px;*/
 }
 
-/* ELENCO */
-.elenco-grid {
+/* ELENCO / FILMOGRAGIA*/
+.conteudo-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 20px;
 }
 
-.ator-card {
+.conteudo-grid-ator { /*Apenas pagina-ator*/
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 20px;
+}
+
+.grid-card {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -152,7 +160,7 @@
     text-align: center;
 }
 
-.ator-foto {
+.grid-imagem {
     width: 100%;
     aspect-ratio: 2/3;
     object-fit: cover;
@@ -161,12 +169,12 @@
     transition: filter 0.2s;
 }
 
-.ator-foto:hover {
+.grid-imagem:hover{
     filter: brightness(1.1);
 }
 
-.ator-nome {
-    font-size: 15px;
+.item-label {
+    font-size: 17px;
     font-weight: 500;
     color: var(--text-titulo);
     text-decoration: none;
@@ -174,12 +182,14 @@
     line-height: 1.3;
 }
 
-.ator-nome:hover {
+.item-label:hover {
     color: var(--gold-dim);
 }
-.personagem {
-
+.personagem { /*Apenas pagina-dorama*/
     font-size: 12px;
     color: #5a4a3a;
-
+}
+.detalhe-filmografia{ /*Apenas pagina-ator*/
+    font-size: 15px;
+    color: #5a4a3a;
 }
