@@ -25,4 +25,10 @@ public class ElencoDAO extends BaseDAO{
         return Elenco.converterLista(listaRegistros);
     }
 
+    public boolean elencoExiste(int idDorama, int idAtor){
+        String sql = "SELECT COUNT(*) FROM tb_elenco WHERE id_dorama = ? AND id_ator = ?";
+        Integer count = jdbc.queryForObject(sql, Integer.class, idDorama, idAtor);
+        return count > 0;
+    }
+
 }

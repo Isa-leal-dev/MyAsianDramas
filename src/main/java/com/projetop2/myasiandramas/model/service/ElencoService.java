@@ -22,4 +22,8 @@ public class ElencoService {
         return edao.verificarPersonagem(idDorama);
     }
 
+    public boolean elencoExiste(int idDorama, int idAtor){
+        return edao.elencoExiste(idDorama, idAtor);
+    }
+
 }

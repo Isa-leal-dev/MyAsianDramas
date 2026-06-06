@@ -69,6 +69,8 @@ public class DataLoader implements CommandLineRunner{
                            + "/discover/tv?api_key=" + chaveApi 
                            + "&with_origin_country=" + pais 
                            + "&with_genres=18"
+                           + "&without_genres=16"
+                           + "&without_keywords=5970|209125"
                            + "&sort_by=popularity.desc&page=" + pagina;
 
                             /*URL de exemplo testada em navegador:
@@ -78,6 +80,8 @@ public class DataLoader implements CommandLineRunner{
                             &with_origin_country=
                             KR
                             &with_genres=18
+                            &without_genres=16
+                            &without_keywords=wrestling|gourmet
                             &sort_by=popularity.desc&page=
                             1
                             */
@@ -188,8 +192,12 @@ public class DataLoader implements CommandLineRunner{
                         }
                         //Insere em tb_elenco
                         int idAtor = atorService.buscarIdAtorPorIdTmdb(idTmdbAtor);
-                        Elenco elenco = new Elenco(idDorama, idAtor, personagem);
-                        elencoService.inserirElenco(elenco);
+                        
+                        // Verifica se o par idDorama+idAtor já existe em tb_elenco
+                        if(!elencoService.elencoExiste(idDorama, idAtor)){
+                            Elenco elenco = new Elenco(idDorama, idAtor, personagem);
+                            elencoService.inserirElenco(elenco);
+                        }
                     }//fim cada integrante/ator de elenco/creditos 
 
                 }//Fim de cada item/dorama

@@ -103,7 +103,8 @@ public class Ator {
         String nomeAtor = (String) registros.get("nome_ator");
         String nomeOriginal = (String) registros.get("nome_original");
         String fotoPerfil = (String) registros.get("foto_perfil");
-        Sexo sexo = Sexo.valueOf((String) registros.get("sexo"));
+            String auxSexo = (String) registros.get("sexo");
+        Sexo sexo = auxSexo != null ? Sexo.valueOf(auxSexo) : null; //Para evitar nullPointer em valueOf()
         LocalDate dataNascimento = registros.get("data_nascimento") != null ? //data é retornada como java.sqlDate
                                 ((java.sql.Date) registros.get("data_nascimento")).toLocalDate() //Precisa converter para LocalDate
                                 : null;//verificação de null para evitar NullPointerException
