@@ -16,4 +16,11 @@ public class DoramaGeneroDAO extends BaseDAO {
         jdbc.update(sql,obj);
     }
 
+    public boolean generoJaExisteNoDorama(int idDorama, int idGenero){
+        String sql = "SELECT COUNT(*) FROM tb_doramas_generos WHERE id_dorama = ? AND id_genero = ?";
+        Integer count = jdbc.queryForObject(sql,Integer.class, idDorama, idGenero);
+        return count > 0;
+
+    }
+
 }

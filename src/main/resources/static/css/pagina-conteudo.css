@@ -95,7 +95,13 @@
     padding: 3px 10px;
 }
 
-/* BOTÃO ADICIONAR - Apenas pagina-dorama:*/
+/* BOTÕES ADICIONAR - Apenas pagina-dorama:*/
+
+.botoes{
+    display: flex; 
+    gap: 12px;
+}
+
 .btn-adicionar {
     display: inline-flex;
     align-items: center;

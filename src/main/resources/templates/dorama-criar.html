@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Criar Dorama | MyAsianDramas</title>
+    <meta charset="UTF-8"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
+    <link rel="stylesheet" th:href="@{/css/dorama-criar.css}"/>
+</head>
+<body>
+    <div th:replace="~{base :: topo}"></div>
+    <div th:replace="~{base :: menu}"></div>
+
+    <main>
+        <div class="form-header">
+            <h1 class="form-titulo">Adicionar Dorama</h1>
+            <p class="form-subtitulo">Preencha as informações do dorama</p>
+        </div>
+
+        <form th:action="@{/dorama/criar}" method="post" th:object="${criarDorama}" class="form-card">
+
+            <!-- Títulos -->
+            <div class="form-secao">
+                <h2 class="secao-titulo">Títulos</h2>
+                <div class="form-grid-3">
+                    <div class="form-grupo">
+                        <label class="form-label">Título em Português</label>
+                        <input class="form-input" type="text" th:field="*{tituloPortugues}" placeholder="Ex: Jogo da Lula"/>
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">Título em Inglês</label>
+                        <input class="form-input" type="text" th:field="*{tituloIngles}" placeholder="Ex: Squid Game"/>
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">Título Nativo</label>
+                        <input class="form-input" type="text" th:field="*{tituloNativo}" placeholder="Ex: 오징어 게임"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Informações gerais -->
+            <div class="form-secao">
+                <h2 class="secao-titulo">Informações Gerais</h2>
+                <div class="form-grid-2">
+                    <div class="form-grupo">
+                        <label class="form-label">País</label>
+                        <select class="form-input form-select" th:field="*{pais}">
+                            <option th:each="p : ${paises}"
+                                    th:value="${p.name()}"
+                                    th:text="${p.descricao}"></option>
+                        </select>
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">Status</label>
+                        <select class="form-input form-select" th:field="*{statusDorama}">
+                            <option th:each="s : ${status}"
+                                    th:value="${s.name()}"
+                                    th:text="${s.descricao}"></option>
+                        </select>
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">Emissora</label>
+                        <input class="form-input" type="text" th:field="*{emissoraOriginal}" placeholder="Ex: Netflix, TVN..."/>
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">Número de Episódios</label>
+                        <input class="form-input" type="number" th:field="*{numeroEpisodios}" placeholder="Ex: 16"/>
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">Data de Estreia</label>
+                        <input class="form-input" type="date" th:field="*{dataEstreia}"/>
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">Data de Encerramento</label>
+                        <input class="form-input" type="date" th:field="*{dataFinal}"/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Sinopse e Poster -->
+            <div class="form-secao">
+                <h2 class="secao-titulo">Detalhes</h2>
+                <div class="form-grupo">
+                    <label class="form-label">Sinopse</label>
+                    <textarea class="form-input form-textarea" th:field="*{sinopse}" placeholder="Descreva o enredo do dorama..."></textarea>
+                </div>
+                <div class="form-grupo">
+                    <label class="form-label">URL do Poster</label>
+                    <input class="form-input" type="text" th:field="*{poster}" placeholder="https://..."/>
+                </div>
+            </div>
+
+            <!-- Ações -->
+            <div class="form-acoes">
+                <a th:href="@{/}" class="btn-cancelar">Cancelar</a>
+                <input type="submit" value="Criar Dorama" class="btn-criar"/>
+            </div>
+
+        </form>
+    </main>
+
+    <div th:replace="~{base :: rodape}"></div>
+</body>
+</html>

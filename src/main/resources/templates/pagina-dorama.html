@@ -70,12 +70,20 @@
                     </div>
                 </div>
 
-                <!-- Botão adicionar à lista -->
-                <a th:href="'/listas/adicionar-dorama/' + ${dorama.idDorama}"
-                   th:if="${session.usuarioLogado != null}"
-                   class="btn-adicionar">
-                    <i class="fa-solid fa-plus"></i> Adicionar à Lista
-                </a>
+                <div class="botoes">
+                    <!-- Botão adicionar à lista -->
+                    <a th:href="'/listas/adicionar-dorama/' + ${dorama.idDorama}"
+                    th:if="${session.usuarioLogado != null}"
+                    class="btn-adicionar">
+                        <i class="fa-solid fa-plus"></i> Adicionar à Lista
+                    </a>
+                    <!-- Botão adicionar gêneros -->
+                    <a th:href="'/dorama/' + ${dorama.idDorama} + '/adicionar-genero'" 
+                    th:if="${session.usuarioLogado != null}"
+                    class="btn-adicionar">
+                        <i class="fa-solid fa-plus"></i> Adicionar Gêneros
+                    </a>
+                </div>
             </div>
         </div>
 

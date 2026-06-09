@@ -15,4 +15,8 @@ public class DoramaGeneroService {
     public void inserirDoramaGenero(DoramaGenero dg){
         dgdao.inserirDoramaGenero(dg);
     }  
+
+    public boolean generoJaExisteNoDorama(int idDorama, int idGenero){
+        return dgdao.generoJaExisteNoDorama(idDorama, idGenero);
+    }
 }

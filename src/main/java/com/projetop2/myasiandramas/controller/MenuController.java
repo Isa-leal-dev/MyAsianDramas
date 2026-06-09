@@ -1,3 +1,6 @@
+/*
+    Rotas para landing page, busca e navegação geral
+*/
 package com.projetop2.myasiandramas.controller;
 
 import java.time.LocalDate;
@@ -59,8 +62,6 @@ public class MenuController {
             List<Genero> opcoesGeneros = generoService.buscarTodosGeneros();
             model.addAttribute("generos", opcoesGeneros);
             
-
-
         //Lançamentos do Ano:
         List<Dorama> listaAno = doramaService.buscarDoramasPorMes(mes);
         model.addAttribute("mesSelecionado", mes); //Para adicionar classe de ativo no botão selecionado
@@ -111,7 +112,7 @@ public class MenuController {
             //Personagem:
             List<Elenco> personagens = elencoService.verificarPersonagem(id);
             model.addAttribute("personagens",personagens);
-
+            
         return "pagina-dorama";
     }
     

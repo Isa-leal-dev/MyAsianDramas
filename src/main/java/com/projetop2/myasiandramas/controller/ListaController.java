@@ -51,7 +51,6 @@ public class ListaController {
 
     @PostMapping("/listas/criar")
     public String formCriarLista(@ModelAttribute Lista li, 
-                                 Model model, 
                                  HttpSession session){
         //Verifica dados do usuário logado
         Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");

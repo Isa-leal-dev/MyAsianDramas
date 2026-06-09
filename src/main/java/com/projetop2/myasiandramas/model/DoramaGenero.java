@@ -4,6 +4,10 @@ public class DoramaGenero {
     private int idDorama;
     private int idGenero;
 
+    public DoramaGenero() {
+
+    }
+
     //Para insert e select
     public DoramaGenero(int idDorama, int idGenero) {
         this.idDorama = idDorama;
