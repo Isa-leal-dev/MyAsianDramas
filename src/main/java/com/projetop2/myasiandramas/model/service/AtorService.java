@@ -24,8 +24,8 @@ public class AtorService {
 
     //CREATE:
 
-    public void inserirAtor(Ator a){
-        adao.inserirAtor(a);
+    public int inserirAtor(Ator a){
+       return adao.inserirAtor(a);
     }   
 
     //READ:
@@ -40,6 +40,11 @@ public class AtorService {
 
     public List<Ator> buscarAtoresPorNome(String nome){
         return adao.buscarAtoresPorNome(nome);
+    }
+
+    //UPDATE:
+    public void atualizarAtor(int idAtor, Ator a){
+        adao.atualizarAtor(idAtor, a);
     }
     
 }

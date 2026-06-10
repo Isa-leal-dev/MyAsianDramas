@@ -50,7 +50,7 @@
                         <span class="info-valor" th:text="${dorama.emissoraOriginal}"></span>
                     </div>
 
-            <!--dataEstreiaFormatada e dataFinalFormatada - getters adicionados após ConversorData criado-->
+                    <!--dataEstreiaFormatada e dataFinalFormatada - getters adicionados após ConversorData criado-->
                     <div class="info-linha">  
                         <span class="info-label">Estreia</span>
                         <span class="info-valor" th:text="${dorama.dataEstreiaFormatada}"></span>
@@ -73,7 +73,7 @@
                     <!-- Botão adicionar à lista -->
                     <a th:href="'/listas/adicionar-dorama/' + ${dorama.idDorama}"
                     th:if="${session.usuarioLogado != null}"
-                    class="btn-adicionar">
+                    class="btn-destaque">
                         <i class="fa-solid fa-plus"></i> Adicionar à Lista
                     </a>          
             </div>
