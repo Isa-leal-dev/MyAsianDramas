@@ -95,12 +95,7 @@
     padding: 3px 10px;
 }
 
-/* BOTÕES ADICIONAR - Apenas pagina-dorama:*/
-
-.botoes{
-    display: flex; 
-    gap: 12px;
-}
+/* BOTÕES - Apenas pagina-dorama:*/
 
 .btn-adicionar {
     display: inline-flex;
@@ -122,6 +117,17 @@
     filter: brightness(1.1);
 }
 
+.btn-acao {
+    color: var(--text-titulo);
+    text-decoration: none;
+    font-size: 13px;
+    transition: color 0.2s;
+}
+
+.btn-acao:hover {
+    color: var(--gold-dim);
+}
+
 /* SEÇÕES */
 .secao {
     margin-bottom: 48px;
@@ -135,6 +141,30 @@
     margin-bottom: 20px;
     padding-bottom: 10px;
     border-bottom: 1px solid #e8e0d4;
+}
+
+/* SEÇÃO GERENCIAR - Apenas pagina-dorama */
+
+.gerenciar-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.gerenciar-coluna {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.gerenciar-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-titulo);
+    text-transform: uppercase;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
 }
 
 /* SINOPSE - Apenas pagina-dorama:*/

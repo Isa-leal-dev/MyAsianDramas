@@ -19,4 +19,8 @@ public class DoramaGeneroService {
     public boolean generoJaExisteNoDorama(int idDorama, int idGenero){
         return dgdao.generoJaExisteNoDorama(idDorama, idGenero);
     }
+
+    public void removerGeneroDoDorama(DoramaGenero dg){
+        dgdao.removerGeneroDoDorama(dg);
+    }
 }

@@ -23,4 +23,9 @@ public class DoramaGeneroDAO extends BaseDAO {
 
     }
 
+    public void removerGeneroDoDorama(DoramaGenero dg){
+        String sql = "DELETE FROM tb_doramas_generos WHERE id_dorama = ? AND id_genero = ?";
+        jdbc.update(sql,dg.getIdDorama(),dg.getIdGenero());
+    }
+
 }

@@ -107,4 +107,42 @@ public class DoramaController {
         return "redirect:/dorama/" + idDorama;
     }
 
+    //Remove Gênero do Dorama
+    
+    @GetMapping("/dorama/{idDorama}/remover-genero")
+    public String removerGeneroDoDorama(Model model, 
+                                       @PathVariable int idDorama,
+                                       HttpSession session){
+
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) 
+            return "redirect:/login";
+
+        Dorama d = doramaService.buscarDoramaPorId(idDorama);
+        model.addAttribute("dorama",d);
+
+        //Gêneros incluídos
+        model.addAttribute("generos", generoService.buscarGenerosPorDorama(idDorama));
+
+        return "dorama-remover-genero";
+    }
+
+    @PostMapping("/dorama/remover-genero")
+    public String removerGeneroDoDorama( @RequestParam List<Integer> idGenero,
+                                         @RequestParam int idDorama,
+                                          HttpSession session){
+
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) 
+            return "redirect:/login";
+
+        for(int idGen : idGenero){
+            if(doramaGeneroService.generoJaExisteNoDorama(idDorama, idGen)){
+                DoramaGenero dg = new DoramaGenero(idDorama,idGen);
+                doramaGeneroService.removerGeneroDoDorama(dg);
+            }    
+        }
+        return "redirect:/dorama/" + idDorama;
+    }
+
 }

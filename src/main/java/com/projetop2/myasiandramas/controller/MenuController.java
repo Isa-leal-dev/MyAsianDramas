@@ -103,7 +103,7 @@ public class MenuController {
         model.addAttribute("dorama",d);
         
         //Gêneros:
-        List<String> generos = generoService.buscarGenerosPorDorama(id);
+        List<Genero> generos = generoService.buscarGenerosPorDorama(id);
         model.addAttribute("generos",generos);
 
         //Elenco:
