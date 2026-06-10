@@ -135,6 +135,7 @@ a.grid-item {
   font-weight: 500;
   color: var(--text-titulo);
   flex: 1;
+  text-decoration: none;
 }
 
 /* DORAMAS POR GENERO/LANÇAMENTOS - OPCOES */

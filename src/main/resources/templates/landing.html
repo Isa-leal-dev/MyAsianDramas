@@ -19,7 +19,7 @@
 
     <div class="doramas-grid">
 
-      <a th:href="@{/dorama/{id}(id=${d.idDorama})}" class="grid-item" th:each="d : ${doramas}">
+      <a th:href="@{'/dorama/' + ${d.idDorama}}" class="grid-item" th:each="d : ${doramas}">
         <img class="doramas-poster" th:src="${d.poster}" alt=""/>
         <div class="doramas-info">
           <img class="doramas-flag" 
@@ -54,7 +54,7 @@
       <img class="doramas-flag"
           th:src="'https://flagcdn.com/24x18/' + ${dg.pais.name().toLowerCase()} + '.png'"
           th:alt="${dg.pais.descricao}"/>
-      <span class="lista-titulo" th:text="${dg.tituloPortugues}"></span>
+      <a th:href="@{'/dorama/' + ${dg.idDorama}}" class="lista-titulo" th:text="${dg.tituloPortugues}"></a>
     </div>
   </div>
 
@@ -112,7 +112,7 @@
             <img class="doramas-flag" 
                  th:src="'https://flagcdn.com/24x18/' + ${dorama.pais.name().toLowerCase()} + '.png'"
                  th:alt="${dorama.pais.descricao}"/>
-            <span class="lista-titulo" th:text="${dorama.tituloPortugues}"></span>
+            <a th:href="@{'/dorama/' + ${dorama.idDorama}}" class="lista-titulo" th:text="${dorama.tituloPortugues}"></a>
         </div>
     </div>
     </div>
