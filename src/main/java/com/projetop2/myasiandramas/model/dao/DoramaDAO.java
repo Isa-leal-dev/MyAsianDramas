@@ -107,5 +107,29 @@ public class DoramaDAO extends BaseDAO{
         List<Map<String,Object>> listaRegistros = jdbc.queryForList(sql, idLista);
         return Dorama.converterLista(listaRegistros);
     }
+
+    //UPDATE:
+
+    public void atualizarDorama(int idDorama, Dorama d){
+        String sql = "UPDATE tb_doramas SET data_estreia = ?, data_final = ?, emissora_original = ?, pais = ?, "+
+                    "poster = ?, sinopse = ?, status_dorama = ?, titulo_ingles = ?, titulo_nativo = ?, titulo_portugues = ?, "+
+                    "numero_episodios = ? WHERE id_dorama = ?";
+        Object[] obj = new Object[12];
+        obj[0] = (LocalDate) d.getDataEstreia();
+        obj[1] = (LocalDate) d.getDataFinal();
+        obj[2] = (String) d.getEmissoraOriginal();
+        obj[3] = d.getPais().name();
+        obj[4] = (String) d.getPoster();
+        obj[5] = (String) d.getSinopse();
+        obj[6] = d.getStatusDorama().name();
+        obj[7] = (String) d.getTituloIngles();
+        obj[8] = (String) d.getTituloNativo();
+        obj[9] = (String) d.getTituloPortugues();
+        obj[10] = (int) d.getNumeroEpisodios();
+        obj[11] = idDorama;
+
+        jdbc.update(sql,obj);
+    }
+
    
 }

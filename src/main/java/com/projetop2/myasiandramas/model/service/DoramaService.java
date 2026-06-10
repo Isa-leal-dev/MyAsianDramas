@@ -68,4 +68,9 @@ public class DoramaService {
         return ddao.buscarDoramasPorLista(idLista);
     }
 
+    //UPDATE:
+    public void atualizarDorama(int idDorama, Dorama d){
+        ddao.atualizarDorama(idDorama, d);
+    }
+
 }

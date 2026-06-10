@@ -68,6 +68,42 @@ public class DoramaController {
 		return "redirect:/dorama/" + idDorama;
     }
 
+    //UPDATE:
+
+    @GetMapping("/dorama/{idDorama}/editar") 
+    public String editarDorama(Model model, 
+                             @PathVariable int idDorama,
+                             HttpSession session){
+
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null)
+            return "redirect:/login";
+
+        model.addAttribute("id",idDorama); 
+        Dorama doramaAnterior = doramaService.buscarDoramaPorId(idDorama);
+        model.addAttribute("dorama",doramaAnterior);
+
+        //Opções de países:
+        model.addAttribute("paises", PaisDorama.values());
+        //Opções de status:
+        model.addAttribute("status", StatusDorama.values());
+        return "dorama-editar";
+    }
+
+    @PostMapping("/dorama/{idDorama}/editar")
+    public String atualizarDorama(@PathVariable int idDorama, 
+                                @ModelAttribute Dorama dorama,
+                                HttpSession session){
+
+        //Verifica dados do usuário logado
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null)
+            return "redirect:/login";
+
+        doramaService.atualizarDorama(idDorama, dorama);
+		return "redirect:/dorama/" + idDorama;
+    }
+
     //Insere Gênero em Dorama
     
     @GetMapping("/dorama/{idDorama}/adicionar-genero")
