@@ -1,0 +1,46 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Remover Gênero | MyAsianDramas</title>
+    <meta charset="UTF-8"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
+    <link rel="stylesheet" th:href="@{/css/pagina-selecao.css}"/>
+</head>
+<body>
+    <div th:replace="~{base :: topo}"></div>
+    <div th:replace="~{base :: menu}"></div>
+
+    <main>
+        <div class="page-header">
+            <div>
+                <h1 class="page-titulo">Remover Gênero</h1>
+                <p class="page-subtitulo">
+                    <span th:text="${dorama.tituloPortugues}"></span>
+                    <span class="titulo-nativo"
+                          th:if="${dorama.tituloNativo != dorama.tituloPortugues}"
+                          th:text="' · ' + ${dorama.tituloNativo}"></span>
+                </p>
+            </div>
+        </div>
+
+        <form th:action="@{/dorama/remover-genero}" method="post">
+            <input type="hidden" name="idDorama" th:value="${dorama.idDorama}"/>
+
+            <div class="opcoes-grid">
+                <label th:each="g : ${generos}" class="opcoes-card">
+                    <input type="checkbox" name="idGenero" th:value="${g.idGenero}" class="opcoes-checkbox"/>
+                    <span class="opcoes-nome" th:text="${g.descricao}"></span>
+                </label>
+            </div>
+
+            <div class="form-acoes">
+                <a th:href="'/dorama/' + ${dorama.idDorama}" class="btn-cancelar">Cancelar</a>
+                <button type="submit" class="btn-confirmar">Confirmar</button>
+            </div>
+        </form>
+    </main>
+
+    <div th:replace="~{base :: rodape}"></div>
+</body>
+</html>

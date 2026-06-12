@@ -50,6 +50,13 @@
         <a th:href="@{/listas/criar}">Criar Nova Lista</a>
       </div>
     </div>
+    <div class="navbar-dropdown">
+    <span>Criar</span>
+      <div class="dropdown-menu">
+        <a th:href="@{/dorama/criar}">Dorama</a>
+        <a th:href="@{/ator/criar}">Ator</a>
+      </div>
+    </div>
     <div class="navbar-busca">
       <form method="get" th:action="@{/resultados-busca}">
         <input type="text" name="titulo" placeholder="Buscar dorama..."/>

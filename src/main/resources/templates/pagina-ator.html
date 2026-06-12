@@ -41,6 +41,13 @@
                         <span class="info-valor" th:text="${ator.sexo.descricao}"></span>
                     </div>
                 </div>
+
+                <!-- Botão Editar Ator-->
+                    <a th:href="'/ator/' + ${ator.idAtor} + '/editar'"
+                    th:if="${session.usuarioLogado != null}"
+                    class="btn-destaque">
+                        <i class="fa-solid fa-plus"></i> Editar
+                    </a>   
             </div>
         </div>
 

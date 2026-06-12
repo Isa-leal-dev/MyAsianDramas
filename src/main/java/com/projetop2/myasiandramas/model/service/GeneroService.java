@@ -34,7 +34,7 @@ public class GeneroService {
         return gdao.buscarTodosGeneros();
     }
 
-    public List<String> buscarGenerosPorDorama(int idDorama){
+    public List<Genero> buscarGenerosPorDorama(int idDorama){
         return gdao.buscarGenerosPorDorama(idDorama);
     }
 

@@ -33,6 +33,7 @@ build/
 .vscode/
 
 ### Credenciais e configuração sensível ###
+application-local.yml
 .env
 
 ### PostgreSQL ###

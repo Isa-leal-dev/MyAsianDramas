@@ -1,0 +1,63 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Criar Ator | MyAsianDramas</title>
+    <meta charset="UTF-8"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
+    <link rel="stylesheet" th:href="@{/css/formulario-conteudo.css}"/>
+</head>
+<body>
+    <div th:replace="~{base :: topo}"></div>
+    <div th:replace="~{base :: menu}"></div>
+
+    <main>
+        <div class="form-header">
+            <h1 class="form-titulo">Adicionar Ator</h1>
+            <p class="form-subtitulo">Preencha as informações do ator</p>
+        </div>
+
+        <form th:action="@{/ator/criar}" method="post" th:object="${criarAtor}" class="form-card">
+
+            <div class="form-secao">
+                <div class="form-grid-2">
+                    <div class="form-grupo">
+                        <label class="form-label">Nome</label>
+                        <input class="form-input" type="text" th:field="*{nomeAtor}" placeholder="Ex: Park Shin-Hye"/>
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">Nome Original</label>
+                        <input class="form-input" type="text" th:field="*{nomeOriginal}" placeholder="Ex: 박신혜"/>
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">Data de Nascimento</label>
+                        <input class="form-input" type="date" th:field="*{dataNascimento}"/>
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">Sexo</label>
+                        <select class="form-input form-select" th:field="*{sexo}">
+                            <option th:each="s : ${sexo}"
+                                    th:value="${s.name()}"
+                                    th:text="${s.descricao}"></option>
+                        </select>
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">URL da Foto de Perfil</label>
+                        <input class="form-input" type="text" th:field="*{fotoPerfil}" placeholder="https://..."/>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Ações -->
+            <div class="form-acoes">
+                <a th:href="@{/}" class="btn-cancelar">Cancelar</a>
+                <input type="submit" value="Criar Ator" class="btn-criar"/>
+            </div>
+
+        </form>
+    </main>
+
+    <div th:replace="~{base :: rodape}"></div>
+</body>
+</html>

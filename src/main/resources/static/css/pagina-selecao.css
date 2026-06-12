@@ -1,0 +1,115 @@
+/* CABEÇALHO */
+.page-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-bottom: 40px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e8e0d4;
+}
+
+.page-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--text-titulo);
+    margin-bottom: 6px;
+}
+
+.page-subtitulo {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--text-titulo);
+}
+
+.titulo-nativo {
+    font-size: 14px;
+    color: #b0a090;
+    font-weight: 400;
+}
+
+/* GRID DE GÊNEROS */
+.opcoes-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+    gap: 12px;
+    margin-bottom: 32px;
+}
+
+/* CARD DE GÊNERO */
+.opcoes-card {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    background: #fff;
+    border: 2px solid #e8e0d4;
+    border-radius: 6px;
+    padding: 14px 16px;
+    cursor: pointer;
+    transition: all 0.2s;
+
+}
+
+.opcoes-card:hover {
+    box-shadow: 0 4px 16px rgba(0,0,0,.08);
+}
+
+.opcoes-checkbox {
+    appearance: none;
+    accent-color: var(--gold);
+    width: 12px;
+    height: 12px;
+    border: 2px solid #d4b98a;
+    border-radius: 50%;
+    cursor: pointer;
+    flex-shrink: 0;
+    transition: all 0.2s;
+}
+
+.opcoes-checkbox:checked {
+    background: #d4b98a; 
+    border-color: var(--gold);
+}
+
+.opcoes-nome {
+    font-size: 14px;
+    color: var(--text-titulo);
+    font-weight: 500;
+}
+
+/* AÇÕES */
+.form-acoes {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+}
+
+.btn-cancelar {
+    font-size: 13px;
+    color: #7a5c3e;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.btn-cancelar:hover {
+    color: var(--text-titulo);
+}
+
+.btn-confirmar {
+    background: var(--gold);
+    color: var(--bg);
+    border: none;
+    border-radius: 2px;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.btn-confirmar:hover {
+    filter: brightness(1.1);
+}

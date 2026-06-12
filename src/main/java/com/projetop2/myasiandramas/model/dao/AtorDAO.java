@@ -21,8 +21,8 @@ public class AtorDAO extends BaseDAO{
 
     //CREATE:
 
-    public void inserirAtor(Ator a){
-        String sql = "INSERT INTO tb_atores(id_tmdb_ator, nome_ator, nome_original, data_nascimento, sexo, foto_perfil) VALUES(?,?,?,?,?,?)";
+    public int inserirAtor(Ator a){
+        String sql = "INSERT INTO tb_atores(id_tmdb_ator, nome_ator, nome_original, data_nascimento, sexo, foto_perfil) VALUES(?,?,?,?,?,?) RETURNING id_ator";
         Object[] obj = new Object[6];
         obj[0] = (int) a.getIdTmdbAtor();
         obj[1] = (String) a.getNomeAtor(); 
@@ -30,7 +30,8 @@ public class AtorDAO extends BaseDAO{
         obj[3] = (LocalDate) a.getDataNascimento();
         obj[4] = a.getSexo() != null ? a.getSexo().name() : null;
         obj[5] = (String) a.getFotoPerfil();
-        jdbc.update(sql,obj);
+       
+       return jdbc.queryForObject(sql, Integer.class, obj);
     }
 
     //READ:
@@ -53,6 +54,29 @@ public class AtorDAO extends BaseDAO{
         String nomeBuscado = "%"+nome+"%";
         List<Map<String,Object>> listaRegistros = jdbc.queryForList(sql, nomeBuscado);
         return Ator.converterLista(listaRegistros);       
+    }
+
+    public List<Ator> buscarTodosAtores(){
+        String sql = "SELECT * FROM tb_atores ORDER BY nome_ator ASC";
+        List<Map<String,Object>> listaRegistros = jdbc.queryForList(sql);
+        return Ator.converterLista(listaRegistros);       
+    }
+
+    //UPDATE
+
+    public void atualizarAtor(int idAtor, Ator a){
+        String sql = "UPDATE tb_atores SET id_tmdb_ator = ?, nome_ator = ?, nome_original = ?, data_nascimento = ?, "+
+                     "sexo = ?, foto_perfil = ? WHERE id_ator = ?";
+        Object[] obj = new Object[7];
+        obj[0] = (int) a.getIdTmdbAtor();
+        obj[1] = (String) a.getNomeAtor(); 
+        obj[2] = (String) a.getNomeOriginal();
+        obj[3] = (LocalDate) a.getDataNascimento();
+        obj[4] = a.getSexo() != null ? a.getSexo().name() : null;
+        obj[5] = (String) a.getFotoPerfil();
+        obj[6] = idAtor;
+
+        jdbc.update(sql, obj);
     }
 
 }

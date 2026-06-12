@@ -16,4 +16,16 @@ public class DoramaGeneroDAO extends BaseDAO {
         jdbc.update(sql,obj);
     }
 
+    public boolean generoJaExisteNoDorama(int idDorama, int idGenero){
+        String sql = "SELECT COUNT(*) FROM tb_doramas_generos WHERE id_dorama = ? AND id_genero = ?";
+        Integer count = jdbc.queryForObject(sql,Integer.class, idDorama, idGenero);
+        return count > 0;
+
+    }
+
+    public void removerGeneroDoDorama(DoramaGenero dg){
+        String sql = "DELETE FROM tb_doramas_generos WHERE id_dorama = ? AND id_genero = ?";
+        jdbc.update(sql,dg.getIdDorama(),dg.getIdGenero());
+    }
+
 }

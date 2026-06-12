@@ -1,0 +1,55 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Adicionar Elenco | MyAsianDramas</title>
+    <meta charset="UTF-8"/>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+    <link rel="stylesheet" th:href="@{/css/base.css}"/>
+    <link rel="stylesheet" th:href="@{/css/formulario-conteudo.css}"/>
+</head>
+<body>
+    <div th:replace="~{base :: topo}"></div>
+    <div th:replace="~{base :: menu}"></div>
+
+    <main>
+
+        <div class="form-header">
+            <h1 class="form-titulo">Adicionar Elenco</h1>
+            <p class="form-subtitulo">Selecione o ator para o dorama
+                <span th:text="${dorama.tituloPortugues}"></span>
+                    <span class="titulo-nativo"
+                          th:if="${dorama.tituloNativo != dorama.tituloPortugues}"
+                          th:text="' · ' + ${dorama.tituloNativo}"></span>
+            </p>
+        </div>
+
+        <form th:action="@{/dorama/adicionar-elenco}" method="post" th:object="${elenco}">
+            <input type="hidden" name="idDorama" th:value="${dorama.idDorama}"/>
+
+            <div class="form-secao">
+                <div class="form-grid-2">
+                    <div class="form-grupo">
+                        <label class="form-label" >Ator</label>
+                        <select th:field="*{idAtor}" class="form-input form-select">
+                            <option th:each="a : ${atores}"
+                                    th:value="${a.idAtor}"
+                                    th:text="${a.nomeAtor}"></option>
+                        </select>                            
+                    </div>
+                    <div class="form-grupo">
+                        <label class="form-label">Personagem</label>
+                        <input class="form-input" type="text" th:field="*{personagem}"/>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-acoes">
+                <a th:href="'/dorama/' + ${dorama.idDorama}" class="btn-cancelar">Cancelar</a>
+                <button type="submit" class="btn-criar">Confirmar</button>
+            </div>
+        </form>
+    </main>
+
+    <div th:replace="~{base :: rodape}"></div>
+</body>
+</html>

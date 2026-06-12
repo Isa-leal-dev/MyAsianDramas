@@ -50,7 +50,7 @@
                         <span class="info-valor" th:text="${dorama.emissoraOriginal}"></span>
                     </div>
 
-            <!--dataEstreiaFormatada e dataFinalFormatada - getters adicionados após ConversorData criado-->
+                    <!--dataEstreiaFormatada e dataFinalFormatada - getters adicionados após ConversorData criado-->
                     <div class="info-linha">  
                         <span class="info-label">Estreia</span>
                         <span class="info-valor" th:text="${dorama.dataEstreiaFormatada}"></span>
@@ -65,20 +65,53 @@
                         <div class="info-valor generos-lista">
                             <span th:each="genero : ${generos}" 
                                   class="genero-tag" 
-                                  th:text="${genero}"></span>
+                                  th:text="${genero.descricao}"></span>
                         </div>
-                    </div>
-                </div>
+                    </div>           
 
-                <!-- Botão adicionar à lista -->
-                <a th:href="'/listas/adicionar-dorama/' + ${dorama.idDorama}"
-                   th:if="${session.usuarioLogado != null}"
-                   class="btn-adicionar">
-                    <i class="fa-solid fa-plus"></i> Adicionar à Lista
-                </a>
+                </div>
+                    <!-- Botão adicionar à lista -->
+                    <a th:href="'/listas/adicionar-dorama/' + ${dorama.idDorama}"
+                    th:if="${session.usuarioLogado != null}"
+                    class="btn-destaque">
+                        <i class="fa-solid fa-plus"></i> Adicionar à Lista
+                    </a>          
             </div>
         </div>
 
+        <div class="secao" th:if="${session.usuarioLogado != null}">
+            <h2 class="secao-titulo">Gerenciar</h2>
+            <div class="gerenciar-grid">
+                
+                <div class="gerenciar-coluna">
+                    <a th:href="'/dorama/' + ${dorama.idDorama} + '/editar'" class="btn-acao">
+                        <i class="fa-solid fa-pen"></i> Editar Dorama
+                    </a>
+                </div>
+
+                <div class="gerenciar-coluna">
+                    <span class="gerenciar-label">Gêneros</span>
+                    <a th:href="'/dorama/' + ${dorama.idDorama} + '/adicionar-genero'" class="btn-acao">
+                        <i class="fa-solid fa-plus"></i> Adicionar
+                    </a>
+                    <a th:href="'/dorama/' + ${dorama.idDorama} + '/remover-genero'" class="btn-acao">
+                        <i class="fa-solid fa-minus"></i> Remover
+                    </a>
+                </div>
+
+                <div class="gerenciar-coluna">
+                    <span class="gerenciar-label">Elenco</span>
+                    <a th:href="'/dorama/' + ${dorama.idDorama} + '/adicionar-elenco'" class="btn-acao">
+                        <i class="fa-solid fa-plus"></i> Adicionar
+                    </a>
+                    <a th:href="'/dorama/' + ${dorama.idDorama} + '/remover-elenco'" class="btn-acao">
+                        <i class="fa-solid fa-minus"></i> Remover
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    
         <!-- Sinopse -->
         <div class="secao" th:if="${dorama.sinopse != null}">
             <h2 class="secao-titulo">Sinopse</h2>

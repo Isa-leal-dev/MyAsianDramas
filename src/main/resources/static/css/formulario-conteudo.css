@@ -1,0 +1,142 @@
+/* CABEÇALHO */
+.form-header {
+    margin-bottom: 32px;
+}
+
+.form-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 36px;
+    font-weight: 600;
+    color: var(--text-titulo);
+    margin-bottom: 4px;
+}
+
+.form-subtitulo {
+    font-size: 13px;
+    color: var(--text-muted);
+}
+
+/* CARD DO FORMULÁRIO */
+.form-card {
+    background: #fff;
+    border-radius: 6px;
+    border: 1px solid #e8e0d4;
+    padding: 36px;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+/* SEÇÕES */
+.form-secao {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.secao-titulo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--text-titulo);
+    padding-bottom: 8px;
+    border-bottom: 1px solid #e8e0d4;
+}
+
+/* GRIDS */
+.form-grid-2 {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.form-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+}
+
+/* GRUPO DE CAMPO */
+.form-grupo {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-label {
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--text-titulo);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+}
+
+/* INPUTS */
+.form-input {
+    background: #f5f0e8;
+    border: 1px solid #d4b98a;
+    border-radius: 4px;
+    padding: 10px 14px;
+    font-size: 14px;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text-titulo);
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    border-color: var(--gold);
+}
+
+.form-input::placeholder {
+    color: #b0a090;
+}
+
+.form-select {
+    cursor: pointer;
+}
+
+.form-textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* AÇÕES */
+.form-acoes {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 16px;
+    padding-top: 8px;
+}
+
+.btn-cancelar {
+    font-size: 13px;
+    color: #7a5c3e;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.btn-cancelar:hover {
+    color: var(--text-titulo);
+}
+
+.btn-criar {
+    background: var(--gold);
+    color: var(--bg);
+    border: none;
+    border-radius: 2px;
+    padding: 10px 24px;
+    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    letter-spacing: 0.8px;
+    cursor: pointer;
+    transition: filter 0.2s;
+}
+
+.btn-criar:hover {
+    filter: brightness(1.1);
+}

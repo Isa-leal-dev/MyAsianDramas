@@ -37,11 +37,12 @@ public class GeneroDAO extends BaseDAO{
         return Genero.converterLista(listaRegistros);
     }
 
-    public List<String> buscarGenerosPorDorama(int idDorama){
-        String sql = "SELECT g.descricao FROM tb_generos g " +
+    public List<Genero> buscarGenerosPorDorama(int idDorama){
+        String sql = "SELECT g.* FROM tb_generos g " +
                     "JOIN tb_doramas_generos dg ON g.id_genero = dg.id_genero " +
                     "WHERE dg.id_dorama = ?";
-        return jdbc.queryForList(sql, String.class, idDorama);
+        List<Map<String,Object>> listaRegistros = jdbc.queryForList(sql, idDorama);
+        return Genero.converterLista(listaRegistros);
     }
 
 }
