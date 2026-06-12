@@ -66,4 +66,4 @@ https://myasiandramas.onrender.com/;jsessionid=ABC123...
 ```
 Isso pode acontecer quando o browser bloqueia ou rejeita o cookie de sessão.
 
-**Solução:** Atualize a página. Se o problema persistir, limpe os cookies do browser para o domínio da aplicação e faça login novamente.
+**Solução:** Volte para a página anterior e faça o login novamente. Se o problema persistir, limpe os cookies do browser para o domínio da aplicação.

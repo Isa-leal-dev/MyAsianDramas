@@ -30,7 +30,9 @@
                         <img class="dorama-flag" th:if="${mostrarBandeira}"
                              th:src="'https://flagcdn.com/24x18/' + ${d.pais.name().toLowerCase()} + '.png'"
                              th:alt="${d.pais.descricao}"/>
-                        <span class="resultado-titulo-en" th:text="${d.tituloIngles}"></span>
+                        <span class="resultado-titulo-en" 
+                              th:text="${d.tituloIngles}"
+                              th:if="${d.tituloIngles != d.tituloPortugues}"></span>
                         <span class="resultado-titulo-nativo"
                               th:text="${d.tituloNativo}"
                               th:if="${d.tituloNativo != d.tituloPortugues}"></span>

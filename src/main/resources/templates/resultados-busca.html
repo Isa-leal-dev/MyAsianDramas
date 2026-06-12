@@ -33,7 +33,9 @@
                          th:alt="${d.tituloPortugues}"/>
                     <div class="resultado-info">
                         <span class="resultado-titulo-pt" th:text="${d.tituloPortugues}"></span>
-                        <span class="resultado-titulo-en" th:text="${d.tituloIngles}"></span>
+                        <span class="resultado-titulo-en" 
+                              th:text="${d.tituloIngles}"
+                              th:if="${d.tituloIngles != d.tituloPortugues}"></span>
                         <span class="resultado-titulo-nativo"
                               th:text="${d.tituloNativo}"
                               th:if="${d.tituloNativo != d.tituloPortugues}"></span>

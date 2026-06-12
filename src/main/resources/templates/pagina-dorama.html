@@ -23,7 +23,9 @@
 
             <div class="conteudo-dados">
                 <h1 class="titulo-pt" th:text="${dorama.tituloPortugues}"></h1>
-                <p class="titulo-en" th:text="${dorama.tituloIngles}"></p>
+                <p class="titulo-en"
+                   th:text="${dorama.tituloIngles}"
+                   th:if="${dorama.tituloIngles != dorama.tituloPortugues}"></p>
                 <p class="titulo-nativo"
                    th:text="${dorama.tituloNativo}"
                    th:if="${dorama.tituloNativo != dorama.tituloPortugues}"></p>
