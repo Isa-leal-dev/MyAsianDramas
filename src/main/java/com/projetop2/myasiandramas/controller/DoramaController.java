@@ -17,11 +17,14 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.projetop2.myasiandramas.model.Dorama;
 import com.projetop2.myasiandramas.model.DoramaGenero;
+import com.projetop2.myasiandramas.model.Elenco;
 import com.projetop2.myasiandramas.model.PaisDorama;
 import com.projetop2.myasiandramas.model.StatusDorama;
 import com.projetop2.myasiandramas.model.Usuario;
+import com.projetop2.myasiandramas.model.service.AtorService;
 import com.projetop2.myasiandramas.model.service.DoramaGeneroService;
 import com.projetop2.myasiandramas.model.service.DoramaService;
+import com.projetop2.myasiandramas.model.service.ElencoService;
 import com.projetop2.myasiandramas.model.service.GeneroService;
 
 import jakarta.servlet.http.HttpSession;
@@ -36,6 +39,10 @@ public class DoramaController {
     private GeneroService generoService;
     @Autowired
     private DoramaGeneroService doramaGeneroService;
+    @Autowired
+    private AtorService atorService;
+    @Autowired
+    private ElencoService elencoService;
 
     //CREATE:
 
@@ -179,6 +186,78 @@ public class DoramaController {
             }    
         }
         return "redirect:/dorama/" + idDorama;
+    }
+
+    //Insere Elenco em Dorama
+    
+    @GetMapping("/dorama/{idDorama}/adicionar-elenco")
+    public String adicionarElencoEmDorama(Model model, 
+                                       @PathVariable int idDorama,
+                                       HttpSession session){
+
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) 
+            return "redirect:/login";
+
+        Dorama d = doramaService.buscarDoramaPorId(idDorama);
+        model.addAttribute("dorama",d);
+
+        model.addAttribute("elenco", new Elenco());
+
+        //Opções de atores
+        model.addAttribute("atores", atorService.buscarTodosAtores());
+
+        return "dorama-adicionar-elenco";
+    }
+
+    @PostMapping("/dorama/adicionar-elenco")
+    public String adicionarElencoEmDorama(@ModelAttribute Elenco elenco,
+                                          HttpSession session){
+
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) 
+            return "redirect:/login";
+
+        if(!elencoService.elencoExiste(elenco.getIdDorama(), elenco.getIdAtor())){
+                elencoService.inserirElenco(elenco);
+        }    
+            
+        return "redirect:/dorama/" + elenco.getIdDorama();
+    }
+
+    //Remove Elenco do Dorama
+    
+    @GetMapping("/dorama/{idDorama}/remover-elenco")
+    public String removerElencoDoDorama(Model model, 
+                                       @PathVariable int idDorama,
+                                       HttpSession session){
+
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) 
+            return "redirect:/login";
+
+        Dorama d = doramaService.buscarDoramaPorId(idDorama);
+        model.addAttribute("dorama",d);
+
+        //Atores incluídos
+        model.addAttribute("elencoAtual", atorService.buscarAtoresPorDorama(idDorama));
+
+        return "dorama-remover-elenco";
+    }
+
+    @PostMapping("/dorama/remover-elenco")
+    public String removerElencoDoDorama( @ModelAttribute Elenco elenco,
+                                          HttpSession session){
+
+        Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null) 
+            return "redirect:/login";
+        
+        if(elencoService.elencoExiste(elenco.getIdDorama(), elenco.getIdAtor())){
+                elencoService.removerElenco(elenco.getIdDorama(), elenco.getIdAtor());
+            }        
+        
+        return "redirect:/dorama/" + elenco.getIdDorama();
     }
 
 }

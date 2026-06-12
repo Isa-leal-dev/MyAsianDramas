@@ -29,7 +29,7 @@
 }
 
 /* GRID DE GÊNEROS */
-.generos-grid {
+.opcoes-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
     gap: 12px;
@@ -37,7 +37,7 @@
 }
 
 /* CARD DE GÊNERO */
-.genero-card {
+.opcoes-card {
     display: flex;
     align-items: center;
     gap: 10px;
@@ -50,11 +50,11 @@
 
 }
 
-.genero-card:hover {
+.opcoes-card:hover {
     box-shadow: 0 4px 16px rgba(0,0,0,.08);
 }
 
-.genero-checkbox {
+.opcoes-checkbox {
     appearance: none;
     accent-color: var(--gold);
     width: 12px;
@@ -66,12 +66,12 @@
     transition: all 0.2s;
 }
 
-.genero-checkbox:checked {
+.opcoes-checkbox:checked {
     background: #d4b98a; 
     border-color: var(--gold);
 }
 
-.genero-nome {
+.opcoes-nome {
     font-size: 14px;
     color: var(--text-titulo);
     font-weight: 500;

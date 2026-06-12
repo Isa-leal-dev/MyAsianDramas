@@ -26,4 +26,8 @@ public class ElencoService {
         return edao.elencoExiste(idDorama, idAtor);
     }
 
+    public void removerElenco(int idDorama, int idAtor){
+        edao.removerElenco(idDorama, idAtor);
+    }
+
 }

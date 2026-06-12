@@ -5,7 +5,7 @@
     <meta charset="UTF-8"/>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet"/>
     <link rel="stylesheet" th:href="@{/css/base.css}"/>
-    <link rel="stylesheet" th:href="@{/css/dorama-adicionar-genero.css}"/>
+    <link rel="stylesheet" th:href="@{/css/pagina-selecao.css}"/>
 </head>
 <body>
     <div th:replace="~{base :: topo}"></div>
@@ -27,10 +27,10 @@
         <form th:action="@{/dorama/adicionar-genero}" method="post">
             <input type="hidden" name="idDorama" th:value="${dorama.idDorama}"/>
 
-            <div class="generos-grid">
-                <label th:each="g : ${generos}" class="genero-card">
-                    <input type="checkbox" name="idGenero" th:value="${g.idGenero}" class="genero-checkbox"/>
-                    <span class="genero-nome" th:text="${g.descricao}"></span>
+            <div class="opcoes-grid">
+                <label th:each="g : ${generos}" class="opcoes-card">
+                    <input type="checkbox" name="idGenero" th:value="${g.idGenero}" class="opcoes-checkbox"/>
+                    <span class="opcoes-nome" th:text="${g.descricao}"></span>
                 </label>
             </div>
 

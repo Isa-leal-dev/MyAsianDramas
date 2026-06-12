@@ -56,6 +56,12 @@ public class AtorDAO extends BaseDAO{
         return Ator.converterLista(listaRegistros);       
     }
 
+    public List<Ator> buscarTodosAtores(){
+        String sql = "SELECT * FROM tb_atores ORDER BY nome_ator ASC";
+        List<Map<String,Object>> listaRegistros = jdbc.queryForList(sql);
+        return Ator.converterLista(listaRegistros);       
+    }
+
     //UPDATE
 
     public void atualizarAtor(int idAtor, Ator a){

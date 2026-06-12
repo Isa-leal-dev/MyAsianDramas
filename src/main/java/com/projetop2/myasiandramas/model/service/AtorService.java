@@ -42,6 +42,10 @@ public class AtorService {
         return adao.buscarAtoresPorNome(nome);
     }
 
+    public List<Ator> buscarTodosAtores(){
+        return adao.buscarTodosAtores();
+    }
+
     //UPDATE:
     public void atualizarAtor(int idAtor, Ator a){
         adao.atualizarAtor(idAtor, a);

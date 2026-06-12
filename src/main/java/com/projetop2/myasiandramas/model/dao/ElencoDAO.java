@@ -31,4 +31,10 @@ public class ElencoDAO extends BaseDAO{
         return count > 0;
     }
 
+    public void removerElenco(int idDorama, int idAtor){
+        String sql = "DELETE FROM tb_elenco WHERE id_dorama = ? AND id_ator = ?";
+        jdbc.update(sql, idDorama, idAtor);
+
+    }
+
 }
