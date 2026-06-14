@@ -52,8 +52,11 @@ public class ListaController {
     @PostMapping("/listas/criar")
     public String formCriarLista(@ModelAttribute Lista li, 
                                  HttpSession session){
-        //Verifica dados do usuário logado
+        
         Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null)
+            return "redirect:/login";
+        //Verifica id do usuário logado
         li.setIdUsuario(usuarioLogado.getIdUsuario());
 
 		listaService.criarLista(li);
@@ -166,13 +169,14 @@ public class ListaController {
     }
 
     @PostMapping("/listas/{idLista}/atualizar")
-    public String atualizarLista(Model model, 
-                                @PathVariable int idLista, 
+    public String atualizarLista(@PathVariable int idLista, 
                                 @ModelAttribute Lista lista,
                                 HttpSession session){
 
-        //Verifica dados do usuário logado
         Usuario usuarioLogado = (Usuario) session.getAttribute("usuarioLogado");
+        if (usuarioLogado == null)
+            return "redirect:/login";
+
         lista.setIdUsuario(usuarioLogado.getIdUsuario());
 
         listaService.atualizarLista(idLista, lista);
