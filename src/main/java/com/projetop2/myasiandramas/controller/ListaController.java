@@ -207,7 +207,7 @@ public class ListaController {
             return "redirect:/login";
 
         //Se há doramas na lista, retorna erro ao tentar excluir:
-        if(listaService.contarDoramasEmLista(idLista)>0)
+        if(!listaService.podeDeletar(idLista))
             return "redirect:/listas/minhas?erro=true";
 
         listaService.deletarLista(idLista);

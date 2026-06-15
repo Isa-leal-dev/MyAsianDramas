@@ -180,10 +180,8 @@ public class DoramaController {
             return "redirect:/login";
 
         for(int idGen : idGenero){
-            if(doramaGeneroService.generoJaExisteNoDorama(idDorama, idGen)){
-                DoramaGenero dg = new DoramaGenero(idDorama,idGen);
-                doramaGeneroService.removerGeneroDoDorama(dg);
-            }    
+            DoramaGenero dg = new DoramaGenero(idDorama,idGen);
+            doramaGeneroService.removerGeneroDoDorama(dg);
         }
         return "redirect:/dorama/" + idDorama;
     }
@@ -253,9 +251,7 @@ public class DoramaController {
         if (usuarioLogado == null) 
             return "redirect:/login";
         
-        if(elencoService.elencoExiste(elenco.getIdDorama(), elenco.getIdAtor())){
-                elencoService.removerElenco(elenco.getIdDorama(), elenco.getIdAtor());
-            }        
+        elencoService.removerElenco(elenco.getIdDorama(), elenco.getIdAtor());
         
         return "redirect:/dorama/" + elenco.getIdDorama();
     }

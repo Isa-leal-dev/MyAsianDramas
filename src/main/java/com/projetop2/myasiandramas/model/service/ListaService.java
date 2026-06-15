@@ -44,4 +44,9 @@ public class ListaService {
         ldao.deletarLista(idLista);
     }
 
+    public boolean podeDeletar(int idLista){
+        int count = ldao.contarDoramasEmLista(idLista);
+        return count == 0;
+    }
+
 }
