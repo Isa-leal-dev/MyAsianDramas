@@ -39,7 +39,8 @@
                         <span class="resultado-titulo-nativo"
                               th:text="${d.tituloNativo}"
                               th:if="${d.tituloNativo != d.tituloPortugues}"></span>
-                        <span class="resultado-ano" th:text="${d.dataEstreia.year}"></span>
+                        <span class="resultado-ano" th:text="${d.dataEstreia.year}"
+                              th:if="${d.dataEstreia != null}"></span>
                     </div>
                 </a>
             </div>

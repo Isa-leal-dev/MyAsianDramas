@@ -71,8 +71,9 @@
 						  th:text="${dorama.tituloNativo}"
                           ></span>
 					<span class="detalhe-filmografia"
-						  th:text="'Ano: ' + ${dorama.dataEstreia.getYear()}">
-					</span>
+                          th:if="${dorama.dataEstreia != null}"
+                          th:text="'Ano: ' + ${dorama.dataEstreia.year}">
+                    </span>
 
                 </div>
             </div>
