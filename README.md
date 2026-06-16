@@ -54,16 +54,3 @@ A aplicação está hospedada no Render:
 | `SPRING_DATASOURCE_USERNAME` | Usuário do banco |
 | `SPRING_DATASOURCE_PASSWORD` | Senha do banco |
 | `TMDB_API_KEY` | Chave da API TMDB |
-
----
-
-## ⚠️ Problemas conhecidos
-
-### ID de sessão aparecendo na URL
-Em alguns casos o Tomcat pode exibir o `JSESSIONID` na URL, por exemplo:
-```
-https://myasiandramas.onrender.com/;jsessionid=ABC123...
-```
-Isso pode acontecer quando o browser bloqueia ou rejeita o cookie de sessão.
-
-**Solução:** Volte para a página anterior e faça o login novamente. Se o problema persistir, limpe os cookies do browser para o domínio da aplicação.
