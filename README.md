@@ -4,15 +4,6 @@ Plataforma web para fãs de doramas asiáticos organizarem e descobrirem seus t�
 
 ---
 
-## 🚀 Acesso
-
-A aplicação está hospedada no Render:  
-**[myasiandramas.onrender.com](https://myasiandramas.onrender.com)**
-
-> ⚠️ O plano gratuito do Render pode colocar a aplicação em modo sleep após inatividade. Aguarde alguns segundos na primeira visita para o servidor iniciar.
-
----
-
 ## 📋 Funcionalidades
 
 ### Para todos os visitantes
@@ -54,3 +45,47 @@ A aplicação está hospedada no Render:
 | `SPRING_DATASOURCE_USERNAME` | Usuário do banco |
 | `SPRING_DATASOURCE_PASSWORD` | Senha do banco |
 | `TMDB_API_KEY` | Chave da API TMDB |
+
+---
+
+## ⚙️ Como rodar localmente
+
+### Pré-requisitos
+- Java 21+
+- Maven
+- PostgreSQL
+
+### Configuração
+
+1. Clone o repositório:
+```bash
+git clone https://github.com/Isa-leal-dev/MyAsianDramas.git
+cd MyAsianDramas
+```
+
+2. Crie o banco de dados PostgreSQL:
+```sql
+CREATE DATABASE myasiandramas;
+```
+
+3. Crie o arquivo `application-local.yml` em `src/main/resources/` (não versionado):
+```yaml
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/myasiandramas
+    username: seu_usuario
+    password: sua_senha
+
+tmdb:
+  api-key: sua_chave_tmdb
+```
+
+4. Rode a aplicação com o profile local:
+```bash
+./mvnw spring-boot:run "-Dspring-boot.run.profiles=local"
+```
+
+5. Acesse em `http://localhost:8080`
+
+> Na primeira execução o DataLoader vai popular o banco automaticamente com ~120 doramas da API TMDB. Aguarde alguns minutos.
+
